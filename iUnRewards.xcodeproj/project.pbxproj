@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DD3E17F114813AF900CC7468 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3E17F014813AF900CC7468 /* Common.m */; };
+		DD830E0813F644BF00B3389A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD830E0713F644BF00B3389A /* UIKit.framework */; };
+		DD830E0A13F644BF00B3389A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD830E0913F644BF00B3389A /* Foundation.framework */; };
+		DD830E0C13F644BF00B3389A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD830E0B13F644BF00B3389A /* CoreGraphics.framework */; };
+		DD830E1213F644BF00B3389A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD830E1013F644BF00B3389A /* InfoPlist.strings */; };
+		DD830E1413F644C000B3389A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD830E1313F644C000B3389A /* main.m */; };
+		DD830E1813F644C000B3389A /* iuAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD830E1713F644C000B3389A /* iuAppDelegate.m */; };
+		DD830E1B13F644C000B3389A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD830E1913F644C000B3389A /* MainWindow.xib */; };
+		DD830E1E13F644C000B3389A /* iuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD830E1D13F644C000B3389A /* iuViewController.m */; };
+		DD830E2113F644C000B3389A /* iuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD830E1F13F644C000B3389A /* iuViewController.xib */; };
+		DD830E2913F644C000B3389A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD830E2813F644C000B3389A /* SenTestingKit.framework */; };
+		DD830E2A13F644C000B3389A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD830E0713F644BF00B3389A /* UIKit.framework */; };
+		DD830E2B13F644C000B3389A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD830E0913F644BF00B3389A /* Foundation.framework */; };
+		DD830E2C13F644C000B3389A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD830E0B13F644BF00B3389A /* CoreGraphics.framework */; };
+		DD830E3413F644C000B3389A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD830E3213F644C000B3389A /* InfoPlist.strings */; };
+		DD830E3613F644C000B3389A /* iuTests.h in Resources */ = {isa = PBXBuildFile; fileRef = DD830E3513F644C000B3389A /* iuTests.h */; };
+		DD830E3813F644C000B3389A /* iuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD830E3713F644C000B3389A /* iuTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD830E2D13F644C000B3389A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD830DFA13F644BE00B3389A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD830E0213F644BF00B3389A;
+			remoteInfo = iu;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DD3E17EF14813AF900CC7468 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		DD3E17F014813AF900CC7468 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		DD830E0313F644BF00B3389A /* iUnRewards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iUnRewards.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD830E0713F644BF00B3389A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DD830E0913F644BF00B3389A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DD830E0B13F644BF00B3389A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DD830E0F13F644BF00B3389A /* iUnRewards-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iUnRewards-Info.plist"; sourceTree = "<group>"; };
+		DD830E1113F644BF00B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DD830E1313F644C000B3389A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DD830E1513F644C000B3389A /* iUnRewards-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iUnRewards-Prefix.pch"; sourceTree = "<group>"; };
+		DD830E1613F644C000B3389A /* iuAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iuAppDelegate.h; sourceTree = "<group>"; };
+		DD830E1713F644C000B3389A /* iuAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iuAppDelegate.m; sourceTree = "<group>"; };
+		DD830E1A13F644C000B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		DD830E1C13F644C000B3389A /* iuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iuViewController.h; sourceTree = "<group>"; };
+		DD830E1D13F644C000B3389A /* iuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iuViewController.m; sourceTree = "<group>"; };
+		DD830E2013F644C000B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/iuViewController.xib; sourceTree = "<group>"; };
+		DD830E2713F644C000B3389A /* iUnRewardsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iUnRewardsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD830E2813F644C000B3389A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		DD830E3113F644C000B3389A /* iUnRewardsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iUnRewardsTests-Info.plist"; sourceTree = "<group>"; };
+		DD830E3313F644C000B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DD830E3513F644C000B3389A /* iuTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iuTests.h; sourceTree = "<group>"; };
+		DD830E3713F644C000B3389A /* iuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iuTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD830E0013F644BF00B3389A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD830E0813F644BF00B3389A /* UIKit.framework in Frameworks */,
+				DD830E0A13F644BF00B3389A /* Foundation.framework in Frameworks */,
+				DD830E0C13F644BF00B3389A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD830E2313F644C000B3389A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD830E2913F644C000B3389A /* SenTestingKit.framework in Frameworks */,
+				DD830E2A13F644C000B3389A /* UIKit.framework in Frameworks */,
+				DD830E2B13F644C000B3389A /* Foundation.framework in Frameworks */,
+				DD830E2C13F644C000B3389A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD830DF813F644BE00B3389A = {
+			isa = PBXGroup;
+			children = (
+				DD830E0D13F644BF00B3389A /* iu */,
+				DD830E2F13F644C000B3389A /* iuTests */,
+				DD830E0613F644BF00B3389A /* Frameworks */,
+				DD830E0413F644BF00B3389A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DD830E0413F644BF00B3389A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD830E0313F644BF00B3389A /* iUnRewards.app */,
+				DD830E2713F644C000B3389A /* iUnRewardsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD830E0613F644BF00B3389A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD830E0713F644BF00B3389A /* UIKit.framework */,
+				DD830E0913F644BF00B3389A /* Foundation.framework */,
+				DD830E0B13F644BF00B3389A /* CoreGraphics.framework */,
+				DD830E2813F644C000B3389A /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD830E0D13F644BF00B3389A /* iu */ = {
+			isa = PBXGroup;
+			children = (
+				DD830E1613F644C000B3389A /* iuAppDelegate.h */,
+				DD830E1713F644C000B3389A /* iuAppDelegate.m */,
+				DD830E1913F644C000B3389A /* MainWindow.xib */,
+				DD3E17EF14813AF900CC7468 /* Common.h */,
+				DD3E17F014813AF900CC7468 /* Common.m */,
+				DD830E1C13F644C000B3389A /* iuViewController.h */,
+				DD830E1D13F644C000B3389A /* iuViewController.m */,
+				DD830E1F13F644C000B3389A /* iuViewController.xib */,
+				DD830E0E13F644BF00B3389A /* Supporting Files */,
+			);
+			path = iu;
+			sourceTree = "<group>";
+		};
+		DD830E0E13F644BF00B3389A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DD830E0F13F644BF00B3389A /* iUnRewards-Info.plist */,
+				DD830E1013F644BF00B3389A /* InfoPlist.strings */,
+				DD830E1313F644C000B3389A /* main.m */,
+				DD830E1513F644C000B3389A /* iUnRewards-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DD830E2F13F644C000B3389A /* iuTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD830E3513F644C000B3389A /* iuTests.h */,
+				DD830E3713F644C000B3389A /* iuTests.m */,
+				DD830E3013F644C000B3389A /* Supporting Files */,
+			);
+			path = iuTests;
+			sourceTree = "<group>";
+		};
+		DD830E3013F644C000B3389A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DD830E3113F644C000B3389A /* iUnRewardsTests-Info.plist */,
+				DD830E3213F644C000B3389A /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD830E0213F644BF00B3389A /* iUnRewards */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "iUnRewards" */;
+			buildPhases = (
+				DD830DFF13F644BF00B3389A /* Sources */,
+				DD830E0013F644BF00B3389A /* Frameworks */,
+				DD830E0113F644BF00B3389A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iUnRewards;
+			productName = iu;
+			productReference = DD830E0313F644BF00B3389A /* iUnRewards.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DD830E2613F644C000B3389A /* iUnRewardsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD830E3E13F644C000B3389A /* Build configuration list for PBXNativeTarget "iUnRewardsTests" */;
+			buildPhases = (
+				DD830E2213F644C000B3389A /* Sources */,
+				DD830E2313F644C000B3389A /* Frameworks */,
+				DD830E2413F644C000B3389A /* Resources */,
+				DD830E2513F644C000B3389A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD830E2E13F644C000B3389A /* PBXTargetDependency */,
+			);
+			name = iUnRewardsTests;
+			productName = iuTests;
+			productReference = DD830E2713F644C000B3389A /* iUnRewardsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DD830DFA13F644BE00B3389A /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "iUnRewards" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DD830DF813F644BE00B3389A;
+			productRefGroup = DD830E0413F644BF00B3389A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD830E0213F644BF00B3389A /* iUnRewards */,
+				DD830E2613F644C000B3389A /* iUnRewardsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD830E0113F644BF00B3389A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD830E1213F644BF00B3389A /* InfoPlist.strings in Resources */,
+				DD830E1B13F644C000B3389A /* MainWindow.xib in Resources */,
+				DD830E2113F644C000B3389A /* iuViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD830E2413F644C000B3389A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD830E3413F644C000B3389A /* InfoPlist.strings in Resources */,
+				DD830E3613F644C000B3389A /* iuTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DD830E2513F644C000B3389A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD830DFF13F644BF00B3389A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD830E1413F644C000B3389A /* main.m in Sources */,
+				DD830E1813F644C000B3389A /* iuAppDelegate.m in Sources */,
+				DD830E1E13F644C000B3389A /* iuViewController.m in Sources */,
+				DD3E17F114813AF900CC7468 /* Common.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD830E2213F644C000B3389A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD830E3813F644C000B3389A /* iuTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD830E2E13F644C000B3389A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD830E0213F644BF00B3389A /* iUnRewards */;
+			targetProxy = DD830E2D13F644C000B3389A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DD830E1013F644BF00B3389A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD830E1113F644BF00B3389A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DD830E1913F644C000B3389A /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD830E1A13F644C000B3389A /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		DD830E1F13F644C000B3389A /* iuViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD830E2013F644C000B3389A /* en */,
+			);
+			name = iuViewController.xib;
+			sourceTree = "<group>";
+		};
+		DD830E3213F644C000B3389A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD830E3313F644C000B3389A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DD830E3913F644C000B3389A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DD830E3A13F644C000B3389A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DD830E3C13F644C000B3389A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iu/iUnRewards-Prefix.pch";
+				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
+				PRODUCT_NAME = iUnRewards;
+				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DD830E3D13F644C000B3389A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iu/iUnRewards-Prefix.pch";
+				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
+				PRODUCT_NAME = iUnRewards;
+				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DD830E3F13F644C000B3389A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iu.app/iu";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iu/iu-Prefix.pch";
+				INFOPLIST_FILE = "iuTests/iUnRewardsTests-Info.plist";
+				PRODUCT_NAME = iUnRewardsTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		DD830E4013F644C000B3389A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iu.app/iu";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iu/iu-Prefix.pch";
+				INFOPLIST_FILE = "iuTests/iUnRewardsTests-Info.plist";
+				PRODUCT_NAME = iUnRewardsTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "iUnRewards" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD830E3913F644C000B3389A /* Debug */,
+				DD830E3A13F644C000B3389A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "iUnRewards" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD830E3C13F644C000B3389A /* Debug */,
+				DD830E3D13F644C000B3389A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD830E3E13F644C000B3389A /* Build configuration list for PBXNativeTarget "iUnRewardsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD830E3F13F644C000B3389A /* Debug */,
+				DD830E4013F644C000B3389A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DD830DFA13F644BE00B3389A /* Project object */;
+}
