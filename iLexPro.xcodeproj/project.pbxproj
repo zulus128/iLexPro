@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD1BED59148E9A8300B1375E /* FavController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BED57148E9A8300B1375E /* FavController.m */; };
+		DD1BED5A148E9A8300B1375E /* FavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD1BED58148E9A8300B1375E /* FavController.xib */; };
+		DD1BED5E148E9D3000B1375E /* 28-star.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1BED5C148E9D3000B1375E /* 28-star.png */; };
+		DD1BED5F148E9D3000B1375E /* 28-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1BED5D148E9D3000B1375E /* 28-star@2x.png */; };
 		DD3E17F114813AF900CC7468 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3E17F014813AF900CC7468 /* Common.m */; };
 		DD830E0813F644BF00B3389A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD830E0713F644BF00B3389A /* UIKit.framework */; };
 		DD830E0A13F644BF00B3389A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD830E0913F644BF00B3389A /* Foundation.framework */; };
@@ -37,23 +41,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD1BED56148E9A8300B1375E /* FavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavController.h; sourceTree = "<group>"; };
+		DD1BED57148E9A8300B1375E /* FavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavController.m; sourceTree = "<group>"; };
+		DD1BED58148E9A8300B1375E /* FavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavController.xib; sourceTree = "<group>"; };
+		DD1BED5C148E9D3000B1375E /* 28-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "28-star.png"; sourceTree = "<group>"; };
+		DD1BED5D148E9D3000B1375E /* 28-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "28-star@2x.png"; sourceTree = "<group>"; };
 		DD3E17EF14813AF900CC7468 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		DD3E17F014813AF900CC7468 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
-		DD830E0313F644BF00B3389A /* iUnRewards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iUnRewards.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD830E0313F644BF00B3389A /* iLexPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLexPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD830E0713F644BF00B3389A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DD830E0913F644BF00B3389A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DD830E0B13F644BF00B3389A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DD830E0F13F644BF00B3389A /* iUnRewards-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iUnRewards-Info.plist"; sourceTree = "<group>"; };
 		DD830E1113F644BF00B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DD830E1313F644C000B3389A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DD830E1513F644C000B3389A /* iUnRewards-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iUnRewards-Prefix.pch"; sourceTree = "<group>"; };
+		DD830E1513F644C000B3389A /* iLexPro-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iLexPro-Prefix.pch"; sourceTree = "<group>"; };
 		DD830E1613F644C000B3389A /* iuAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iuAppDelegate.h; sourceTree = "<group>"; };
 		DD830E1713F644C000B3389A /* iuAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iuAppDelegate.m; sourceTree = "<group>"; };
 		DD830E1A13F644C000B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		DD830E1C13F644C000B3389A /* iuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iuViewController.h; sourceTree = "<group>"; };
 		DD830E1D13F644C000B3389A /* iuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iuViewController.m; sourceTree = "<group>"; };
 		DD830E2013F644C000B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/iuViewController.xib; sourceTree = "<group>"; };
-		DD830E2713F644C000B3389A /* iUnRewardsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iUnRewardsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD830E2713F644C000B3389A /* iLexProTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iLexProTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD830E2813F644C000B3389A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DD830E3113F644C000B3389A /* iUnRewardsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iUnRewardsTests-Info.plist"; sourceTree = "<group>"; };
 		DD830E3313F644C000B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -86,9 +95,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD1BED5B148E9D1800B1375E /* img */ = {
+			isa = PBXGroup;
+			children = (
+				DD1BED5C148E9D3000B1375E /* 28-star.png */,
+				DD1BED5D148E9D3000B1375E /* 28-star@2x.png */,
+			);
+			name = img;
+			sourceTree = "<group>";
+		};
 		DD830DF813F644BE00B3389A = {
 			isa = PBXGroup;
 			children = (
+				DD1BED5B148E9D1800B1375E /* img */,
 				DD830E0D13F644BF00B3389A /* iu */,
 				DD830E2F13F644C000B3389A /* iuTests */,
 				DD830E0613F644BF00B3389A /* Frameworks */,
@@ -99,8 +118,8 @@
 		DD830E0413F644BF00B3389A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DD830E0313F644BF00B3389A /* iUnRewards.app */,
-				DD830E2713F644C000B3389A /* iUnRewardsTests.octest */,
+				DD830E0313F644BF00B3389A /* iLexPro.app */,
+				DD830E2713F644C000B3389A /* iLexProTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +146,9 @@
 				DD830E1C13F644C000B3389A /* iuViewController.h */,
 				DD830E1D13F644C000B3389A /* iuViewController.m */,
 				DD830E1F13F644C000B3389A /* iuViewController.xib */,
+				DD1BED56148E9A8300B1375E /* FavController.h */,
+				DD1BED57148E9A8300B1375E /* FavController.m */,
+				DD1BED58148E9A8300B1375E /* FavController.xib */,
 				DD830E0E13F644BF00B3389A /* Supporting Files */,
 			);
 			path = iu;
@@ -138,7 +160,7 @@
 				DD830E0F13F644BF00B3389A /* iUnRewards-Info.plist */,
 				DD830E1013F644BF00B3389A /* InfoPlist.strings */,
 				DD830E1313F644C000B3389A /* main.m */,
-				DD830E1513F644C000B3389A /* iUnRewards-Prefix.pch */,
+				DD830E1513F644C000B3389A /* iLexPro-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -165,9 +187,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DD830E0213F644BF00B3389A /* iUnRewards */ = {
+		DD830E0213F644BF00B3389A /* iLexPro */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "iUnRewards" */;
+			buildConfigurationList = DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "iLexPro" */;
 			buildPhases = (
 				DD830DFF13F644BF00B3389A /* Sources */,
 				DD830E0013F644BF00B3389A /* Frameworks */,
@@ -177,14 +199,14 @@
 			);
 			dependencies = (
 			);
-			name = iUnRewards;
+			name = iLexPro;
 			productName = iu;
-			productReference = DD830E0313F644BF00B3389A /* iUnRewards.app */;
+			productReference = DD830E0313F644BF00B3389A /* iLexPro.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DD830E2613F644C000B3389A /* iUnRewardsTests */ = {
+		DD830E2613F644C000B3389A /* iLexProTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DD830E3E13F644C000B3389A /* Build configuration list for PBXNativeTarget "iUnRewardsTests" */;
+			buildConfigurationList = DD830E3E13F644C000B3389A /* Build configuration list for PBXNativeTarget "iLexProTests" */;
 			buildPhases = (
 				DD830E2213F644C000B3389A /* Sources */,
 				DD830E2313F644C000B3389A /* Frameworks */,
@@ -196,9 +218,9 @@
 			dependencies = (
 				DD830E2E13F644C000B3389A /* PBXTargetDependency */,
 			);
-			name = iUnRewardsTests;
+			name = iLexProTests;
 			productName = iuTests;
-			productReference = DD830E2713F644C000B3389A /* iUnRewardsTests.octest */;
+			productReference = DD830E2713F644C000B3389A /* iLexProTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -206,7 +228,7 @@
 /* Begin PBXProject section */
 		DD830DFA13F644BE00B3389A /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "iUnRewards" */;
+			buildConfigurationList = DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "iLexPro" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -218,8 +240,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DD830E0213F644BF00B3389A /* iUnRewards */,
-				DD830E2613F644C000B3389A /* iUnRewardsTests */,
+				DD830E0213F644BF00B3389A /* iLexPro */,
+				DD830E2613F644C000B3389A /* iLexProTests */,
 			);
 		};
 /* End PBXProject section */
@@ -232,6 +254,9 @@
 				DD830E1213F644BF00B3389A /* InfoPlist.strings in Resources */,
 				DD830E1B13F644C000B3389A /* MainWindow.xib in Resources */,
 				DD830E2113F644C000B3389A /* iuViewController.xib in Resources */,
+				DD1BED5A148E9A8300B1375E /* FavController.xib in Resources */,
+				DD1BED5E148E9D3000B1375E /* 28-star.png in Resources */,
+				DD1BED5F148E9D3000B1375E /* 28-star@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +296,7 @@
 				DD830E1813F644C000B3389A /* iuAppDelegate.m in Sources */,
 				DD830E1E13F644C000B3389A /* iuViewController.m in Sources */,
 				DD3E17F114813AF900CC7468 /* Common.m in Sources */,
+				DD1BED59148E9A8300B1375E /* FavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +313,7 @@
 /* Begin PBXTargetDependency section */
 		DD830E2E13F644C000B3389A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DD830E0213F644BF00B3389A /* iUnRewards */;
+			target = DD830E0213F644BF00B3389A /* iLexPro */;
 			targetProxy = DD830E2D13F644C000B3389A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -351,7 +377,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -372,7 +398,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -382,9 +408,9 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iu/iUnRewards-Prefix.pch";
+				GCC_PREFIX_HEADER = "iu/iLexPro-Prefix.pch";
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
-				PRODUCT_NAME = iUnRewards;
+				PRODUCT_NAME = iLexPro;
 				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
 				WRAPPER_EXTENSION = app;
 			};
@@ -395,9 +421,9 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iu/iUnRewards-Prefix.pch";
+				GCC_PREFIX_HEADER = "iu/iLexPro-Prefix.pch";
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
-				PRODUCT_NAME = iUnRewards;
+				PRODUCT_NAME = iLexPro;
 				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
 				WRAPPER_EXTENSION = app;
 			};
@@ -414,7 +440,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iu/iu-Prefix.pch";
 				INFOPLIST_FILE = "iuTests/iUnRewardsTests-Info.plist";
-				PRODUCT_NAME = iUnRewardsTests;
+				PRODUCT_NAME = iLexProTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -431,7 +457,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iu/iu-Prefix.pch";
 				INFOPLIST_FILE = "iuTests/iUnRewardsTests-Info.plist";
-				PRODUCT_NAME = iUnRewardsTests;
+				PRODUCT_NAME = iLexProTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -440,7 +466,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "iUnRewards" */ = {
+		DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "iLexPro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD830E3913F644C000B3389A /* Debug */,
@@ -449,7 +475,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "iUnRewards" */ = {
+		DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "iLexPro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD830E3C13F644C000B3389A /* Debug */,
@@ -458,7 +484,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DD830E3E13F644C000B3389A /* Build configuration list for PBXNativeTarget "iUnRewardsTests" */ = {
+		DD830E3E13F644C000B3389A /* Build configuration list for PBXNativeTarget "iLexProTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD830E3F13F644C000B3389A /* Debug */,

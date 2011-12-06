@@ -42,7 +42,7 @@
 
 - (void)del {
     
-    [[Common instance] removeTab:self];
+//    [[Common instance] removeTab:self];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -51,11 +51,11 @@
     UIBarButtonItem* bi = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(bck)] autorelease];
     self.navigationItem.leftBarButtonItem = bi; 
 
-    if (removeable) {
+//    if (removeable) {
         
         UIBarButtonItem* bi1 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(del)] autorelease];
         self.navigationItem.rightBarButtonItem = bi1; 
-    }
+//    }
 
     firsttime = YES;
     
@@ -76,7 +76,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;//(interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -104,11 +104,11 @@
 
 //    NSLog(@"Loading %@", [request.URL absoluteString]);
     
-    if ([[request.URL absoluteString] hasPrefix:TEST_STRING]) {
-        
-        [[Common instance] addTab:[request.URL absoluteString]];
-        return NO;
-    }
+//    if ([[request.URL absoluteString] hasPrefix:TEST_STRING]) {
+//        
+//        [[Common instance] addTab:[request.URL absoluteString]];
+//        return NO;
+//    }
     
     return YES;
 }

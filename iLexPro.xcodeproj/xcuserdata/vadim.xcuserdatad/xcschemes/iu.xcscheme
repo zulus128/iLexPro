@@ -14,9 +14,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DD830E0213F644BF00B3389A"
-               BuildableName = "iUnRewards.app"
-               BlueprintName = "iUnRewards"
-               ReferencedContainer = "container:iUnRewards.xcodeproj">
+               BuildableName = "iLexPro.app"
+               BlueprintName = "iLexPro"
+               ReferencedContainer = "container:iLexPro.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,9 +32,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DD830E2613F644C000B3389A"
-               BuildableName = "iUnRewardsTests.octest"
-               BlueprintName = "iUnRewardsTests"
-               ReferencedContainer = "container:iUnRewards.xcodeproj">
+               BuildableName = "iLexProTests.octest"
+               BlueprintName = "iLexProTests"
+               ReferencedContainer = "container:iLexPro.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -42,9 +42,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD830E0213F644BF00B3389A"
-            BuildableName = "iUnRewards.app"
-            BlueprintName = "iUnRewards"
-            ReferencedContainer = "container:iUnRewards.xcodeproj">
+            BuildableName = "iLexPro.app"
+            BlueprintName = "iLexPro"
+            ReferencedContainer = "container:iLexPro.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -60,9 +60,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD830E0213F644BF00B3389A"
-            BuildableName = "iUnRewards.app"
-            BlueprintName = "iUnRewards"
-            ReferencedContainer = "container:iUnRewards.xcodeproj">
+            BuildableName = "iLexPro.app"
+            BlueprintName = "iLexPro"
+            ReferencedContainer = "container:iLexPro.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -78,9 +78,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD830E0213F644BF00B3389A"
-            BuildableName = "iUnRewards.app"
-            BlueprintName = "iUnRewards"
-            ReferencedContainer = "container:iUnRewards.xcodeproj">
+            BuildableName = "iLexPro.app"
+            BlueprintName = "iLexPro"
+            ReferencedContainer = "container:iLexPro.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -7,16 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "iuViewController.h"
 
 #define TEST_STRING @"http://www.uniquerewards.com/cgi-bin/click.cgi?mid="
 
 @interface Common : NSObject
 
 + (Common*) instance;
-
-- (void)addTab: (NSString*) str;
-- (void)removeTab: (iuViewController*) cont;
 
 @property (nonatomic, retain) UITabBarController* tabBar;
 
