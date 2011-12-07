@@ -28,6 +28,8 @@
 		DD830E3413F644C000B3389A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD830E3213F644C000B3389A /* InfoPlist.strings */; };
 		DD830E3613F644C000B3389A /* iuTests.h in Resources */ = {isa = PBXBuildFile; fileRef = DD830E3513F644C000B3389A /* iuTests.h */; };
 		DD830E3813F644C000B3389A /* iuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD830E3713F644C000B3389A /* iuTests.m */; };
+		DDA14475148F130E0025DB1A /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA14474148F130E0025DB1A /* Item.m */; };
+		DDA14478148F18E60025DB1A /* favourites.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDA14477148F18E60025DB1A /* favourites.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,9 @@
 		DD830E3313F644C000B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DD830E3513F644C000B3389A /* iuTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iuTests.h; sourceTree = "<group>"; };
 		DD830E3713F644C000B3389A /* iuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iuTests.m; sourceTree = "<group>"; };
+		DDA14473148F130E0025DB1A /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		DDA14474148F130E0025DB1A /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		DDA14477148F18E60025DB1A /* favourites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = favourites.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +112,7 @@
 		DD830DF813F644BE00B3389A = {
 			isa = PBXGroup;
 			children = (
+				DDA14476148F18990025DB1A /* plists */,
 				DD1BED5B148E9D1800B1375E /* img */,
 				DD830E0D13F644BF00B3389A /* iu */,
 				DD830E2F13F644C000B3389A /* iuTests */,
@@ -141,6 +147,8 @@
 				DD830E1613F644C000B3389A /* iuAppDelegate.h */,
 				DD830E1713F644C000B3389A /* iuAppDelegate.m */,
 				DD830E1913F644C000B3389A /* MainWindow.xib */,
+				DDA14473148F130E0025DB1A /* Item.h */,
+				DDA14474148F130E0025DB1A /* Item.m */,
 				DD3E17EF14813AF900CC7468 /* Common.h */,
 				DD3E17F014813AF900CC7468 /* Common.m */,
 				DD830E1C13F644C000B3389A /* iuViewController.h */,
@@ -182,6 +190,14 @@
 				DD830E3213F644C000B3389A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DDA14476148F18990025DB1A /* plists */ = {
+			isa = PBXGroup;
+			children = (
+				DDA14477148F18E60025DB1A /* favourites.plist */,
+			);
+			name = plists;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +273,7 @@
 				DD1BED5A148E9A8300B1375E /* FavController.xib in Resources */,
 				DD1BED5E148E9D3000B1375E /* 28-star.png in Resources */,
 				DD1BED5F148E9D3000B1375E /* 28-star@2x.png in Resources */,
+				DDA14478148F18E60025DB1A /* favourites.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +314,7 @@
 				DD830E1E13F644C000B3389A /* iuViewController.m in Sources */,
 				DD3E17F114813AF900CC7468 /* Common.m in Sources */,
 				DD1BED59148E9A8300B1375E /* FavController.m in Sources */,
+				DDA14475148F130E0025DB1A /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +393,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
+				PROVISIONING_PROFILE = "D0D32EAE-9ED7-4714-80C7-3D04725B1FA7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -396,7 +414,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
+				PROVISIONING_PROFILE = "D0D32EAE-9ED7-4714-80C7-3D04725B1FA7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -411,7 +429,7 @@
 				GCC_PREFIX_HEADER = "iu/iLexPro-Prefix.pch";
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
 				PRODUCT_NAME = iLexPro;
-				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
+				PROVISIONING_PROFILE = "D0D32EAE-9ED7-4714-80C7-3D04725B1FA7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -424,7 +442,7 @@
 				GCC_PREFIX_HEADER = "iu/iLexPro-Prefix.pch";
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
 				PRODUCT_NAME = iLexPro;
-				PROVISIONING_PROFILE = "5F504DC7-BA9D-4BE7-B819-7CF706153DFB";
+				PROVISIONING_PROFILE = "D0D32EAE-9ED7-4714-80C7-3D04725B1FA7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

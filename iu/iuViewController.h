@@ -17,8 +17,9 @@
 - (id)initWithAddress:(NSString*)url del:(BOOL)del;
 - (void)bck;
 - (void)del;
+- (void)addFav;
 
 @property (nonatomic, retain) IBOutlet UIWebView* site;
-@property (nonatomic, retain) NSString* surl;
+@property (nonatomic, retain) NSString* lastReq;
 
 @end

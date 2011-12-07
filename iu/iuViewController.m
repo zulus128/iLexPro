@@ -12,7 +12,7 @@
 @implementation iuViewController
 
 @synthesize site;
-@synthesize surl;
+@synthesize lastReq;
 
 - (void)didReceiveMemoryWarning
 {
@@ -28,7 +28,6 @@
     
     if (self = [super init]) {
         
-        self.surl = url;
         removeable = del;
     }
     
@@ -45,25 +44,53 @@
 //    [[Common instance] removeTab:self];
 }
 
+- (void)addFav {
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Внимание" 
+                                                    message:@"Добавить в закладки?"
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Отмена"
+                                          otherButtonTitles:@"Добавить",nil];
+    [alert show];
+    [alert release];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 1) {
+        
+        NSLog(@"Ok");
+        Item* it = [[Item alloc] init];
+        it.link = self.lastReq;
+        it.title = [site stringByEvaluatingJavaScriptFromString:@"document.title"];
+        NSLog(@"addFav: %@, %@", it.title, self.lastReq);
+        [[Common instance]saveFav:it];
+        [it release];
+    }
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     
     UIBarButtonItem* bi = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(bck)] autorelease];
     self.navigationItem.leftBarButtonItem = bi; 
 
-//    if (removeable) {
-        
-        UIBarButtonItem* bi1 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(del)] autorelease];
-        self.navigationItem.rightBarButtonItem = bi1; 
-//    }
-
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"28-star.png"] style: UIBarButtonItemStylePlain target:self action:@selector(addFav)] autorelease];    
+    
     firsttime = YES;
     
-    NSString* urlAdress = self.surl;//@"http://www.uniquerewards.com";
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+
+    NSString* urlAdress = [Common instance].surl;
     NSURL *url = [NSURL URLWithString:urlAdress];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [self.site loadRequest:requestObj];
-    [super viewDidLoad];
 }
 
 - (void)viewDidUnload
@@ -96,13 +123,15 @@
     }
     */
 
-    if(firsttime) {
-        
-        firsttime = NO;
-        return YES;
-    }
+//    if(firsttime) {
+//        
+//        firsttime = NO;
+//        return YES;
+//    }
 
 //    NSLog(@"Loading %@", [request.URL absoluteString]);
+    
+    self.lastReq = [request.URL absoluteString];
     
 //    if ([[request.URL absoluteString] hasPrefix:TEST_STRING]) {
 //        
@@ -111,6 +140,19 @@
 //    }
     
     return YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+
+    NSString *theTitle=[site stringByEvaluatingJavaScriptFromString:@"document.title"];
+    self.navigationItem.title = theTitle;
+}
+
+- (void)dealloc {
+    
+    self.lastReq = nil;
+    
+    [super dealloc];
 }
 
 @end

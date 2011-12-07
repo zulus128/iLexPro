@@ -7,13 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Item.h"
 
-#define TEST_STRING @"http://www.uniquerewards.com/cgi-bin/click.cgi?mid="
+//#define TEST_STRING @"http://www.uniquerewards.com/cgi-bin/click.cgi?mid="
 
-@interface Common : NSObject
+@interface Common : NSObject {
+    
+    NSMutableDictionary* favs;
+    int correction;
+}
 
 + (Common*) instance;
 
+- (void) saveFav: (Item*) item;
+- (int) getFavNewsCount;
+- (Item*) getFavNewsAt: (int)num;
+- (void) delFavNewsAt: (int)num;
+
 @property (nonatomic, retain) UITabBarController* tabBar;
+@property (nonatomic, retain) NSString* filePath;
+@property (nonatomic, retain) NSString* surl;
 
 @end
