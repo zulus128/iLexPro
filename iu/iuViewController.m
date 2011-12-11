@@ -63,6 +63,7 @@
         NSLog(@"Ok");
         Item* it = [[Item alloc] init];
         it.link = self.lastReq;
+        it.type = TYPE_ARTICLE;
         it.title = [site stringByEvaluatingJavaScriptFromString:@"document.title"];
         NSLog(@"addFav: %@, %@", it.title, self.lastReq);
         [[Common instance]saveFav:it];

@@ -10,6 +10,7 @@
 
 #import "iuViewController.h"
 #import "FavController.h"
+#import "NewsController.h"
 
 @implementation Common
 
@@ -36,35 +37,32 @@
 	self = [super init];
 	if(self !=nil) {
         
-        self.surl = @"http://open.lexpro.ru";
+        news = [[NSMutableArray alloc] init];
+
+        self.surl = @"http://online.lexpro.ru";
         iuViewController* vc1 = [[iuViewController alloc] initWithAddress:@"http://..." del:NO];
         UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
         //    nav1.navigationBar.hidden = YES;
         vc1.title = @"LexPro";
+        vc1.tabBarItem.image = [UIImage imageNamed:@"140-gradhat.png"];
         [vc1 release]; vc1 = nil;
         
         FavController* vc2 = [[FavController alloc] init];
         vc2.title = @"Закладки";
         UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:vc2];
-        //    nav2.navigationBar.hidden = YES;
-//        UIImage *image = [UIImage imageNamed: @"28-star.png"];
-//        UITabBarItem *item = [[UITabBarItem alloc] initWithTitle: @"Закладки" image: image tag: 0];
-//        vc2.tabBarItem = item;
-        
-        vc2.tabBarItem.image = [UIImage imageNamed:@"28-star.png"];
-        
+        vc2.tabBarItem.image = [UIImage imageNamed:@"28-star.png"];        
         [vc2 release]; vc2 = nil;
 
-        iuViewController* vc3 = [[iuViewController alloc] initWithAddress:@"http://gmail.com" del:NO];
+        NewsController* vc3 = [[NewsController alloc] init];
         vc3.title = @"Новости";
         UINavigationController* nav3 = [[UINavigationController alloc] initWithRootViewController:vc3];
-        //    nav2.navigationBar.hidden = YES;
+        vc3.tabBarItem.image = [UIImage imageNamed:@"34-coffee.png"];
         [vc3 release]; vc3 = nil;
 
         iuViewController* vc4 = [[iuViewController alloc] initWithAddress:@"http://gmail.com" del:NO];
         vc4.title = @"Настройки";
         UINavigationController* nav4 = [[UINavigationController alloc] initWithRootViewController:vc4];
-        //    nav2.navigationBar.hidden = YES;
+        vc4.tabBarItem.image = [UIImage imageNamed:@"123-id-card.png"];
         [vc4 release]; vc4 = nil;
 
         
@@ -97,6 +95,32 @@
 	return self;	
 }
 
+- (void)clearNews {
+    
+    [news removeAllObjects];
+}
+
+- (void)addNews: (Item*)item {
+    
+    [news addObject:item];
+    NSLog(@"Item added, title: %@", item.title);
+}
+
+- (int) getNewsCount {
+    
+    return [news count];
+}
+
+- (Item*) getNewsAt: (int)num {
+    
+    return [news objectAtIndex:num];
+}
+
+- (BOOL) isOnlyWiFi {
+    
+	return [[NSUserDefaults standardUserDefaults] boolForKey:@"onlyWiFi"];
+}
+
 - (void) saveFav: (Item*) item {
 	
 	int cnt = [[favs objectForKey:@"count"] intValue];
@@ -105,27 +129,26 @@
     [favs setValue:[NSNumber numberWithInt:cnt] forKey:@"count"];
     NSDictionary *f = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects:
                                                             
-//                                                            [NSNumber numberWithInt:item.type],
-//                                                            
+                                                            [NSNumber numberWithInt:item.type],
                                                             item.title == nil?@"":item.title,
                                                             item.link == nil?@"":item.link,    
 //                                                            item.ituneslink == nil?@"":item.ituneslink,    
 //                                                            item.rubric == nil?@"":item.rubric,
 //                                                            item.full_text == nil?@"":item.full_text,
-//                                                            item.date == nil?@"":item.date,
+                                                            item.date == nil?@"":item.date,
 //                                                            item.image == nil?@"":item.image,
-//                                                            item.description == nil?@"":item.description,
+                                                            item.description == nil?@"":item.description,
                                                             nil]
                                                   forKeys:[NSArray arrayWithObjects:
-//                                                           @"Type",
+                                                           @"Type",
                                                            @"Title",
                                                            @"Link",
 //                                                           @"Ituneslink",
 //                                                           @"Rubric",
 //                                                           @"Fulltext",
-//                                                           @"Date",
+                                                           @"Date",
 //                                                           @"Image",
-//                                                           @"Descr",
+                                                           @"Descr",
                                                            nil]];
 	[favs setObject:f forKey:[NSString stringWithFormat:@"Favourite%d", cnt]]; 
 	[favs writeToFile:self.filePath atomically: YES];
@@ -152,15 +175,15 @@
     }
     
     Item* it = [[Item alloc] init];
-//    it.type = [[obj objectForKey:@"Type"] intValue];
+    it.type = [[obj objectForKey:@"Type"] intValue];
     it.title = [obj objectForKey:@"Title"];
     it.link = [obj objectForKey:@"Link"];
 //    it.ituneslink = [obj objectForKey:@"Ituneslink"];
 //    it.rubric = [obj objectForKey:@"Rubric"];
 //    it.full_text = [obj objectForKey:@"Fulltext"];
-//    it.date = [obj objectForKey:@"Date"];
+    it.date = [obj objectForKey:@"Date"];
 //    it.image = [obj objectForKey:@"Image"];
-//    it.description = [obj objectForKey:@"Descr"];
+    it.description = [obj objectForKey:@"Descr"];
     
     return [it autorelease];
 }
