@@ -407,6 +407,7 @@
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
 				PRODUCT_NAME = iLexPro;
 				PROVISIONING_PROFILE = "DEC4A493-9DEA-4504-BEA3-4851FED3BE42";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -420,6 +421,7 @@
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
 				PRODUCT_NAME = iLexPro;
 				PROVISIONING_PROFILE = "DEC4A493-9DEA-4504-BEA3-4851FED3BE42";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

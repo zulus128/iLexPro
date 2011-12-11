@@ -157,7 +157,8 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return YES;//(interfaceOrientation == UIInterfaceOrientationPortrait);
+    //    return YES;
+    return ((interfaceOrientation == UIInterfaceOrientationLandscapeLeft)||(interfaceOrientation == UIInterfaceOrientationLandscapeRight));
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -270,7 +271,7 @@
             }
             // Configure the cell...
 //            Item* item = [[Common instance] getNewsAt:(indexPath.row - ROW_CORRECTION)];
-            Item* item = [[Common instance] getNewsAt:(indexPath.row + 1)];
+            Item* item = [[Common instance] getNewsAt:indexPath.row];
             ((NewsCell*)cell).title.text = item.title;
             ((NewsCell*)cell).rubric.text = item.description;
             ((NewsCell*)cell).time.text = [item.date substringWithRange:NSMakeRange(17, 5)];
