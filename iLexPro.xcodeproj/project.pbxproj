@@ -38,6 +38,8 @@
 		DDCB923514946CB100AB22B6 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDCB923414946CB100AB22B6 /* NewsCell.xib */; };
 		DDCB9237149470B800AB22B6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDCB9236149470B800AB22B6 /* SystemConfiguration.framework */; };
 		DDCB9239149470CC00AB22B6 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDCB9238149470CC00AB22B6 /* libxml2.2.7.3.dylib */; };
+		F27F97181495EA40000837FD /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F27F97161495EA40000837FD /* DetailController.m */; };
+		F27F97191495EA40000837FD /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27F97171495EA40000837FD /* DetailController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +91,9 @@
 		DDCB923414946CB100AB22B6 /* NewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
 		DDCB9236149470B800AB22B6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DDCB9238149470CC00AB22B6 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
+		F27F97151495EA40000837FD /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
+		F27F97161495EA40000837FD /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
+		F27F97171495EA40000837FD /* DetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +187,9 @@
 				DDCB923414946CB100AB22B6 /* NewsCell.xib */,
 				DDCB922E14946C6000AB22B6 /* Reachability.h */,
 				DDCB922F14946C6000AB22B6 /* Reachability.m */,
+				F27F97151495EA40000837FD /* DetailController.h */,
+				F27F97161495EA40000837FD /* DetailController.m */,
+				F27F97171495EA40000837FD /* DetailController.xib */,
 				DD830E0E13F644BF00B3389A /* Supporting Files */,
 			);
 			path = iu;
@@ -288,6 +296,7 @@
 				DDCB921B1494627200AB22B6 /* 140-gradhat@2x.png in Resources */,
 				DDCB922D14946B2900AB22B6 /* NewsController.xib in Resources */,
 				DDCB923514946CB100AB22B6 /* NewsCell.xib in Resources */,
+				F27F97191495EA40000837FD /* DetailController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +317,7 @@
 				DDCB922B1494662600AB22B6 /* NewsController.m in Sources */,
 				DDCB923014946C6000AB22B6 /* Reachability.m in Sources */,
 				DDCB923314946C9C00AB22B6 /* NewsCell.m in Sources */,
+				F27F97181495EA40000837FD /* DetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,7 +28,7 @@ enum item_types {
     TYPE_ARTICLE
 };
 
-@interface Common : NSObject {
+@interface Common : NSObject <UITabBarControllerDelegate> {
     
     NSMutableDictionary* favs;
     NSMutableArray* news;

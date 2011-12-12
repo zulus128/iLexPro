@@ -32,6 +32,19 @@
 	return instance;
 }
 
+- (void) tabBarController: (UITabBarController *) tabBarController didSelectViewController: (UIViewController *) viewController {
+
+//    NSLog(@"fff %d", tabBarController.selectedIndex);
+    
+    switch(tabBarController.selectedIndex){
+        case 0:
+            break;
+        case 3:
+            self.surl = @"http://online.lexpro.ru";
+            break;
+    }
+}
+    
 - (id) init{	
 	
 	self = [super init];
@@ -39,7 +52,7 @@
         
         news = [[NSMutableArray alloc] init];
 
-        self.surl = @"http://online.lexpro.ru";
+        self.surl = @"http://open.lexpro.ru";
         iuViewController* vc1 = [[iuViewController alloc] initWithAddress:@"http://..." del:NO];
         UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
         //    nav1.navigationBar.hidden = YES;
@@ -68,6 +81,7 @@
         
         self.tabBar = [[UITabBarController alloc] init];
         [self.tabBar setViewControllers:[NSArray arrayWithObjects:nav1,nav2,nav3,nav4,nil]];
+        self.tabBar.delegate = self;
 
         [nav1 release]; nav1 = nil;
         [nav2 release]; nav2 = nil;

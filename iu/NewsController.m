@@ -12,7 +12,7 @@
 #import "XMLParser.h"
 #import "NewsCell.h"
 #import "Item.h"
-//#import "NewsDetailController.h"
+#import "DetailController.h"
 #import <QuartzCore/CALayer.h>
 
 @implementation NewsController
@@ -335,15 +335,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-//    NewsDetailController* detailViewController = [[NewsDetailController alloc] initWithNibName:@"NewsDetailController" bundle:nil];     
-//    self.hidesBottomBarWhenPushed = YES;
-//    detailViewController.number = indexPath.row + 1;
-//    [self.navigationController pushViewController:detailViewController animated:YES];
-//    self.hidesBottomBarWhenPushed = NO;
+    Item* item = [[Common instance] getNewsAt:indexPath.row];
+
+    DetailController* detailViewController = [[DetailController alloc] initWithNibName:@"DetailController" bundle:nil];     
+    self.hidesBottomBarWhenPushed = YES;
+    detailViewController.link = item.link;
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 //    detailViewController.image.hidden = YES;
-//    [detailViewController release];
-//     
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [detailViewController release];
+     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)refr {
