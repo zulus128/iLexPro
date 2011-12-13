@@ -11,6 +11,8 @@
 #import "iuViewController.h"
 #import "FavController.h"
 #import "NewsController.h"
+#import "ZastController.h"
+#import "AboutController.h"
 
 @implementation Common
 
@@ -38,9 +40,10 @@
     
     switch(tabBarController.selectedIndex){
         case 0:
+            [nav1 popViewControllerAnimated:NO];
             break;
         case 3:
-            self.surl = @"http://online.lexpro.ru";
+//            self.surl = @"http://online.lexpro.ru";
             break;
     }
 }
@@ -53,8 +56,11 @@
         news = [[NSMutableArray alloc] init];
 
         self.surl = @"http://open.lexpro.ru";
-        iuViewController* vc1 = [[iuViewController alloc] initWithAddress:@"http://..." del:NO];
-        UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
+//        iuViewController* vc1 = [[iuViewController alloc] initWithAddress:@"http://..." del:NO];
+        ZastController* vc1 = [[ZastController alloc] init];
+        nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
+//        [nav1 autorelease]; 
+//        [nav1 retain];
         //    nav1.navigationBar.hidden = YES;
         vc1.title = @"LexPro";
         vc1.tabBarItem.image = [UIImage imageNamed:@"140-gradhat.png"];
@@ -72,7 +78,8 @@
         vc3.tabBarItem.image = [UIImage imageNamed:@"34-coffee.png"];
         [vc3 release]; vc3 = nil;
 
-        iuViewController* vc4 = [[iuViewController alloc] initWithAddress:@"http://gmail.com" del:NO];
+//        iuViewController* vc4 = [[iuViewController alloc] initWithAddress:@"http://gmail.com" del:NO];
+        AboutController* vc4 = [[AboutController alloc] init];
         vc4.title = @"Настройки";
         UINavigationController* nav4 = [[UINavigationController alloc] initWithRootViewController:vc4];
         vc4.tabBarItem.image = [UIImage imageNamed:@"123-id-card.png"];
@@ -83,7 +90,7 @@
         [self.tabBar setViewControllers:[NSArray arrayWithObjects:nav1,nav2,nav3,nav4,nil]];
         self.tabBar.delegate = self;
 
-        [nav1 release]; nav1 = nil;
+//        [nav1 release]; nav1 = nil;
         [nav2 release]; nav2 = nil;
         [nav3 release]; nav3 = nil;
         [nav4 release]; nav4 = nil;
@@ -222,6 +229,8 @@
 
 
 - (void)dealloc {
+
+    [nav1 release]; nav1 = nil;
 
     self.tabBar = nil;
     [_filePath release];

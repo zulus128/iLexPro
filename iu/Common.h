@@ -33,6 +33,7 @@ enum item_types {
     NSMutableDictionary* favs;
     NSMutableArray* news;
     int correction;
+    UINavigationController* nav1;
 }
 
 + (Common*) instance;
