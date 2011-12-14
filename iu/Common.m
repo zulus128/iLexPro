@@ -40,7 +40,7 @@
     
     switch(tabBarController.selectedIndex){
         case 0:
-            [nav1 popViewControllerAnimated:NO];
+//            [nav1 popViewControllerAnimated:NO];
             break;
         case 3:
 //            self.surl = @"http://online.lexpro.ru";
@@ -62,7 +62,7 @@
 //        [nav1 autorelease]; 
 //        [nav1 retain];
         //    nav1.navigationBar.hidden = YES;
-        vc1.title = @"LexPro";
+        vc1.title = @"LEXPRO";
         vc1.tabBarItem.image = [UIImage imageNamed:@"140-gradhat.png"];
         [vc1 release]; vc1 = nil;
         
@@ -80,7 +80,7 @@
 
 //        iuViewController* vc4 = [[iuViewController alloc] initWithAddress:@"http://gmail.com" del:NO];
         AboutController* vc4 = [[AboutController alloc] init];
-        vc4.title = @"Настройки";
+        vc4.title = @"Кабинет";
         UINavigationController* nav4 = [[UINavigationController alloc] initWithRootViewController:vc4];
         vc4.tabBarItem.image = [UIImage imageNamed:@"123-id-card.png"];
         [vc4 release]; vc4 = nil;

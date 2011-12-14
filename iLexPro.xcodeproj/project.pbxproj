@@ -47,6 +47,9 @@
 		DDCB9239149470CC00AB22B6 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDCB9238149470CC00AB22B6 /* libxml2.2.7.3.dylib */; };
 		F27F97181495EA40000837FD /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F27F97161495EA40000837FD /* DetailController.m */; };
 		F27F97191495EA40000837FD /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27F97171495EA40000837FD /* DetailController.xib */; };
+		F2AF939B14989A0800729F9B /* bu-bg-black.png in Resources */ = {isa = PBXBuildFile; fileRef = F2AF939814989A0800729F9B /* bu-bg-black.png */; };
+		F2AF939C14989A0800729F9B /* bu-bg-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = F2AF939914989A0800729F9B /* bu-bg-blue.png */; };
+		F2AF93A214989E2C00729F9B /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = F2AF93A114989E2C00729F9B /* Default-Landscape.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +113,9 @@
 		F27F97151495EA40000837FD /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		F27F97161495EA40000837FD /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		F27F97171495EA40000837FD /* DetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailController.xib; sourceTree = "<group>"; };
+		F2AF939814989A0800729F9B /* bu-bg-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bu-bg-black.png"; sourceTree = "<group>"; };
+		F2AF939914989A0800729F9B /* bu-bg-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bu-bg-blue.png"; sourceTree = "<group>"; };
+		F2AF93A114989E2C00729F9B /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,9 @@
 				DD87D2EB1496C3270091D73D /* border.png */,
 				DD87D2EC1496C3270091D73D /* logo.png */,
 				DD7F130D1497B5F400CDA916 /* 20110610-051616.jpeg */,
+				F2AF939814989A0800729F9B /* bu-bg-black.png */,
+				F2AF939914989A0800729F9B /* bu-bg-blue.png */,
+				F2AF93A114989E2C00729F9B /* Default-Landscape.png */,
 			);
 			name = img;
 			sourceTree = "<group>";
@@ -283,6 +292,9 @@
 /* Begin PBXProject section */
 		DD830DFA13F644BE00B3389A /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "iLexPro" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -327,6 +339,9 @@
 				DD87D2EE1496C3270091D73D /* logo.png in Resources */,
 				DD50D3B21496CDEA009768B8 /* AboutController.xib in Resources */,
 				DD7F130E1497B5F400CDA916 /* 20110610-051616.jpeg in Resources */,
+				F2AF939B14989A0800729F9B /* bu-bg-black.png in Resources */,
+				F2AF939C14989A0800729F9B /* bu-bg-blue.png in Resources */,
+				F2AF93A214989E2C00729F9B /* Default-Landscape.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +461,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iu/iLexPro-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
 				PRODUCT_NAME = iLexPro;
 				PROVISIONING_PROFILE = "DEC4A493-9DEA-4504-BEA3-4851FED3BE42";
@@ -460,6 +476,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iu/iLexPro-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
 				PRODUCT_NAME = iLexPro;
 				PROVISIONING_PROFILE = "DEC4A493-9DEA-4504-BEA3-4851FED3BE42";
