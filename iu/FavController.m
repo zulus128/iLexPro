@@ -165,8 +165,11 @@
      [detailViewController release];
      */
     
+    [Common instance].fromFav = YES;
+    
     Item* item = [[Common instance] getFavNewsAt:indexPath.row];
     [Common instance].surl = item.link;
+//    [Common instance].HTMLtext = item.full_text;
     [Common instance].tabBar.selectedIndex = 0;
 }
 

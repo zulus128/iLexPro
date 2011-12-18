@@ -19,6 +19,8 @@
 @synthesize tabBar;
 @synthesize filePath = _filePath;
 @synthesize surl;
+//@synthesize HTMLtext;
+@synthesize fromFav;
 
 + (Common*) instance  {
 	
@@ -55,9 +57,21 @@
         
         news = [[NSMutableArray alloc] init];
 
-        self.surl = @"http://open.lexpro.ru";
-//        iuViewController* vc1 = [[iuViewController alloc] initWithAddress:@"http://..." del:NO];
-        ZastController* vc1 = [[ZastController alloc] init];
+        self.fromFav = NO;
+        
+        int b = [[NSUserDefaults standardUserDefaults] integerForKey:USER_KEY];
+        switch (b) {
+            case 2:
+                self.surl = @"http://online.lexpro.ru";
+                break;                
+            default:
+                self.surl = @"http://open.lexpro.ru";
+                break;
+        }
+      
+        UIViewController* vc1;
+        vc1 = b?[[iuViewController alloc] initWithAddress:@"http://..." del:NO]:[[ZastController alloc] init];
+//        ZastController* vc1 = [[ZastController alloc] init];
         nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
 //        [nav1 autorelease]; 
 //        [nav1 retain];
@@ -155,7 +169,7 @@
                                                             item.link == nil?@"":item.link,    
 //                                                            item.ituneslink == nil?@"":item.ituneslink,    
 //                                                            item.rubric == nil?@"":item.rubric,
-//                                                            item.full_text == nil?@"":item.full_text,
+                                                            item.full_text == nil?@"":item.full_text,
                                                             item.date == nil?@"":item.date,
 //                                                            item.image == nil?@"":item.image,
                                                             item.description == nil?@"":item.description,
@@ -166,7 +180,7 @@
                                                            @"Link",
 //                                                           @"Ituneslink",
 //                                                           @"Rubric",
-//                                                           @"Fulltext",
+                                                           @"Fulltext",
                                                            @"Date",
 //                                                           @"Image",
                                                            @"Descr",
@@ -201,7 +215,7 @@
     it.link = [obj objectForKey:@"Link"];
 //    it.ituneslink = [obj objectForKey:@"Ituneslink"];
 //    it.rubric = [obj objectForKey:@"Rubric"];
-//    it.full_text = [obj objectForKey:@"Fulltext"];
+    it.full_text = [obj objectForKey:@"Fulltext"];
     it.date = [obj objectForKey:@"Date"];
 //    it.image = [obj objectForKey:@"Image"];
     it.description = [obj objectForKey:@"Descr"];

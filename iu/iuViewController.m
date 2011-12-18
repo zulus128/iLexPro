@@ -13,6 +13,8 @@
 
 @synthesize site;
 @synthesize lastReq;
+//@synthesize HTMLtext;
+@synthesize dataPath;
 
 - (void)didReceiveMemoryWarning
 {
@@ -65,6 +67,8 @@
         it.link = self.lastReq;
         it.type = TYPE_ARTICLE;
         it.title = [site stringByEvaluatingJavaScriptFromString:@"document.title"];
+        it.full_text = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
+
         NSLog(@"addFav: %@, %@", it.title, self.lastReq);
         [[Common instance]saveFav:it];
         [it release];
@@ -88,11 +92,57 @@
 
     [super viewWillAppear:animated];
 
-    NSString* urlAdress = [Common instance].surl;
-    NSURL *url = [NSURL URLWithString:urlAdress];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [self.site loadRequest:requestObj];
+//    if(![Common instance].fromFav) {
+//    
+//        NSString* urlAdress = [Common instance].surl;
+//        NSURL *url = [NSURL URLWithString:urlAdress];
+//        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+//        [self.site loadRequest:requestObj];
+
+    [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
+                                           cachePolicy: NSURLRequestReturnCacheDataElseLoad
+                                       timeoutInterval: 60.0]];
+    
+    //    }
+//    else {
+//        
+//        [self.site loadHTMLString: [Common instance].HTMLtext baseURL:nil];
+//
+//    }
+    
+//    [self cacheFile];
+    
 }
+
+//- (void) cacheFile
+//{
+//    //Create the file/directory pointer for the storage of the cache.
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+//    self.dataPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"cache.html"];
+//    
+//    //Check to see if a file exists a the location
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
+//        //Code for customising when the cache reloads would go here.
+//    }
+//    else
+//    {
+//        //If no file exists write the html cache to it
+//        //Download and write to file
+//        NSURL *cacheUrl = [NSURL URLWithString:[Common instance].surl];
+//        NSData *cacheUrlData = [NSData dataWithContentsOfURL:cacheUrl];
+//        [cacheUrlData writeToFile:dataPath atomically:YES]; 
+//    }
+//    //Run the load web view function.
+//    [self loadWebView];
+//}
+//
+//
+//- (void) loadWebView
+//{
+//    //Load up the web view from the cache.
+//    [self.site loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:dataPath]]];
+//    
+//}
 
 - (void)viewDidUnload
 {
@@ -148,6 +198,10 @@
 
     NSString *theTitle=[site stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.navigationItem.title = theTitle;
+    
+    [Common instance].surl = self.site.request.mainDocumentURL.absoluteString;
+
+//    self.HTMLtext = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
 }
 
 - (void)dealloc {

@@ -14,7 +14,7 @@
 @property (assign, readwrite) int type;
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* link;
-//@property (nonatomic, retain) NSString* full_text;
+@property (nonatomic, retain) NSString* full_text;
 @property (nonatomic, retain) NSString* date;
 //@property (nonatomic, retain) NSString* image;
 @property (nonatomic, retain) NSString* description;

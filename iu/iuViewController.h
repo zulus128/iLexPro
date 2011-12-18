@@ -18,8 +18,12 @@
 - (void)bck;
 - (void)del;
 - (void)addFav;
+- (void) loadWebView;
+- (void) cacheFile;
 
 @property (nonatomic, retain) IBOutlet UIWebView* site;
 @property (nonatomic, retain) NSString* lastReq;
+//@property (nonatomic, retain) NSString* HTMLtext;
+@property (nonatomic, retain) NSString* dataPath;
 
 @end

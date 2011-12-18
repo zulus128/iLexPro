@@ -35,6 +35,8 @@
 - (IBAction)open: (id)sender {
   
     [Common instance].surl = @"http://open.lexpro.ru";
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:USER_KEY];
+
     [self.navigationController pushViewController:vc1 animated:YES];
 
 }
@@ -42,6 +44,7 @@
 - (IBAction)online: (id)sender {
 
     [Common instance].surl = @"http://online.lexpro.ru";
+    [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:USER_KEY];
     [self.navigationController pushViewController:vc1 animated:YES];
 
 }

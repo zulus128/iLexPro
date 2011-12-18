@@ -7,6 +7,7 @@
 //
 
 #import "AboutController.h"
+#import "Common.h"
 
 @implementation AboutController
 
@@ -15,6 +16,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        vc1 = [[iuViewController alloc] initWithAddress:@"http://..." del:NO];
     }
     return self;
 }
@@ -25,6 +28,13 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (IBAction)online: (id)sender {
+    
+    [Common instance].surl = @"http://online.lexpro.ru";
+    [self.navigationController pushViewController:vc1 animated:YES];
+    
 }
 
 #pragma mark - View lifecycle
@@ -46,6 +56,13 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+- (void)dealloc {
+    
+    [vc1 release];
+    
+    [super dealloc];
 }
 
 @end

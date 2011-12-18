@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "iuViewController.h"
 
-@interface AboutController : UIViewController
+@interface AboutController : UIViewController {
+    
+    iuViewController* vc1;
+}
+
+- (IBAction)online: (id)sender;
 
 @end

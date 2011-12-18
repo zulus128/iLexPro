@@ -11,7 +11,7 @@
 
 @implementation Item
 
-@synthesize type, title, link, date, description;
+@synthesize type, title, link, date, description, full_text;
 
 - (void) dealloc {
 	
