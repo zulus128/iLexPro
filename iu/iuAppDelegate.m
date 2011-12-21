@@ -10,6 +10,10 @@
 #import "iuViewController.h"
 #import "Common.h"
 
+#import "SDURLCache.h"
+
+#import "LocalSubstitutionCache.h"
+
 @implementation iuAppDelegate
 
 @synthesize window = _window;
@@ -23,7 +27,16 @@
     [self.window addSubview:[Common instance].tabBar.view];
 
     // self.window.rootViewController = self.viewController;
+  
+//    SDURLCache *urlCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024*10   // 10MB mem cache
+//                                                         diskCapacity:1024*1024*50 // 50MB disk cache
+//                                                             diskPath:[SDURLCache defaultCachePath]];
+//    [NSURLCache setSharedURLCache:urlCache];
+//    [urlCache release];
     
+//    // Set the URL cache and leave it set permanently
+//	LocalSubstitutionCache *cache = [[LocalSubstitutionCache alloc] init];
+//	[NSURLCache setSharedURLCache:cache];
     
     [self.window makeKeyAndVisible];
     return YES;

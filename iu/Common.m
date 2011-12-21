@@ -19,7 +19,7 @@
 @synthesize tabBar;
 @synthesize filePath = _filePath;
 @synthesize surl;
-//@synthesize HTMLtext;
+@synthesize HTMLtext;
 @synthesize fromFav;
 
 + (Common*) instance  {
@@ -65,7 +65,7 @@
                 self.surl = @"http://online.lexpro.ru";
                 break;                
             default:
-                self.surl = @"http://open.lexpro.ru";
+                self.surl = /*@"http://apple.com";*/@"http://open.lexpro.ru";
                 break;
         }
       

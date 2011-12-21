@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIWebPageRequest.h"
 
 @interface iuViewController : UIViewController <UIWebViewDelegate> {
     
@@ -18,12 +19,17 @@
 - (void)bck;
 - (void)del;
 - (void)addFav;
-- (void) loadWebView;
-- (void) cacheFile;
+//- (void) loadWebView;
+//- (void) cacheFile;
 
 @property (nonatomic, retain) IBOutlet UIWebView* site;
 @property (nonatomic, retain) NSString* lastReq;
 //@property (nonatomic, retain) NSString* HTMLtext;
 @property (nonatomic, retain) NSString* dataPath;
+
+- (void)fetchURL:(NSURL *)url;
+
+@property (retain, nonatomic) ASIWebPageRequest *request;
+@property (retain, nonatomic) NSMutableArray *requestsInProgress;
 
 @end

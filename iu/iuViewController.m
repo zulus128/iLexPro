@@ -8,6 +8,13 @@
 
 #import "iuViewController.h"
 #import "Common.h"
+#import "ASIDownloadCache.h"
+
+// Private stuff
+@interface iuViewController ()
+- (void)webPageFetchFailed:(ASIHTTPRequest *)theRequest;
+- (void)webPageFetchSucceeded:(ASIHTTPRequest *)theRequest;
+@end
 
 @implementation iuViewController
 
@@ -15,6 +22,8 @@
 @synthesize lastReq;
 //@synthesize HTMLtext;
 @synthesize dataPath;
+
+@synthesize request, requestsInProgress;
 
 - (void)didReceiveMemoryWarning
 {
@@ -86,6 +95,74 @@
     firsttime = YES;
     
     [super viewDidLoad];
+    
+    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+}
+
+- (void)fetchURL:(NSURL *)url
+{
+    
+	[self setRequestsInProgress:[NSMutableArray array]];
+    
+	[request setDelegate:nil];
+	[request cancel];
+	[self setRequest:[ASIWebPageRequest requestWithURL:url]];
+    
+	[request setDidFailSelector:@selector(webPageFetchFailed:)];
+	[request setDidFinishSelector:@selector(webPageFetchSucceeded:)];
+	[request setDelegate:self];
+	[request setDownloadProgressDelegate:self];
+	[request setUrlReplacementMode:(YES /*1111*/ ? ASIReplaceExternalResourcesWithData : ASIReplaceExternalResourcesWithLocalURLs)];
+	
+	// It is strongly recommended that you set both a downloadCache and a downloadDestinationPath for all ASIWebPageRequests
+	[request setDownloadCache:[ASIDownloadCache sharedCache]];
+	[request setCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
+    
+	// This is actually the most efficient way to set a download path for ASIWebPageRequest, as it writes to the cache directly
+	[request setDownloadDestinationPath:[[ASIDownloadCache sharedCache] pathToStoreCachedResponseDataForRequest:request]];
+	
+	[[ASIDownloadCache sharedCache] setShouldRespectCacheControlHeaders:NO];
+	[request startAsynchronous];
+}
+
+- (void)webPageFetchFailed:(ASIHTTPRequest *)theRequest
+{
+	NSLog(@"%@",[NSString stringWithFormat:@"Something went wrong: %@",[theRequest error]]);
+}
+
+- (void)webPageFetchSucceeded:(ASIHTTPRequest *)theRequest
+{
+	NSURL *baseURL;
+	if (YES /*1111*/) {
+		baseURL = [theRequest url];
+        
+        // If we're using ASIReplaceExternalResourcesWithLocalURLs, we must set the baseURL to point to our locally cached file
+	} else {
+		baseURL = [NSURL fileURLWithPath:[request downloadDestinationPath]];
+	}
+    
+	if ([theRequest downloadDestinationPath]) {
+		NSString *response = [NSString stringWithContentsOfFile:[theRequest downloadDestinationPath] encoding:[theRequest responseEncoding] error:nil];
+//		[responseField setText:response];
+		[self.site loadHTMLString:response baseURL:baseURL];
+	} else {
+//		[responseField setText:[theRequest responseString]];
+		[self.site loadHTMLString:[theRequest responseString] baseURL:baseURL];
+	}
+	
+	NSLog(@"%@",[[theRequest url] absoluteString]);
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)theRequest 
+ navigationType:(UIWebViewNavigationType)navigationType
+{
+	if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        self.lastReq = [theRequest.URL absoluteString];
+		[self fetchURL:[theRequest URL]];
+        NSLog(@"tapped");
+		return NO;
+	}
+	return YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -99,19 +176,27 @@
 //        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 //        [self.site loadRequest:requestObj];
 
-    [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
-                                           cachePolicy: NSURLRequestReturnCacheDataElseLoad
-                                       timeoutInterval: 60.0]];
+
+//    [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
+//                                           cachePolicy: NSURLRequestReturnCacheDataElseLoad
+//                                       timeoutInterval: 10.0]];
+
     
-    //    }
+    
+//        }
 //    else {
 //        
-//        [self.site loadHTMLString: [Common instance].HTMLtext baseURL:nil];
+//        NSString *path = [[NSBundle mainBundle] bundlePath];
+//        NSURL *baseURL = [NSURL fileURLWithPath:path];
+//        [self.site loadHTMLString: [Common instance].HTMLtext baseURL:baseURL];
 //
 //    }
     
 //    [self cacheFile];
-    
+ 
+    NSString* urlAdress = [Common instance].surl;
+    NSURL *url = [NSURL URLWithString:urlAdress];
+    [self fetchURL:url];
 }
 
 //- (void) cacheFile
@@ -156,42 +241,6 @@
     // Return YES for supported orientations
 //    return YES;
     return ((interfaceOrientation == UIInterfaceOrientationLandscapeLeft)||(interfaceOrientation == UIInterfaceOrientationLandscapeRight));
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    /*
-    //You might need to set up a interceptLinks-Bool since you don't want to intercept the initial loading of the content
-    if (self.interceptLinks) {
-        NSURL *url = request.URL;
-        //This launches your custom ViewController, replace it with your initialization-code
-        [BrowserViewController openBrowserWithUrl:url];     
-        return NO;
-    }
-    //No need to intercept the initial request to fill the WebView
-    else {
-        self.interceptLinks = TRUE;
-        return YES;
-    }
-    */
-
-//    if(firsttime) {
-//        
-//        firsttime = NO;
-//        return YES;
-//    }
-
-//    NSLog(@"Loading %@", [request.URL absoluteString]);
-    
-    self.lastReq = [request.URL absoluteString];
-    
-//    if ([[request.URL absoluteString] hasPrefix:TEST_STRING]) {
-//        
-//        [[Common instance] addTab:[request.URL absoluteString]];
-//        return NO;
-//    }
-    
-    return YES;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{

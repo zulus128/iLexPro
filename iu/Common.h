@@ -56,7 +56,7 @@ enum item_types {
 @property (nonatomic, retain) UITabBarController* tabBar;
 @property (nonatomic, retain) NSString* filePath;
 @property (nonatomic, retain) NSString* surl;
-//@property (nonatomic, retain) NSString* HTMLtext;
+@property (nonatomic, retain) NSString* HTMLtext;
 @property (assign, readwrite) BOOL fromFav;
 
 @end
