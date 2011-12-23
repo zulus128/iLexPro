@@ -24,6 +24,8 @@
 
 #define USER_KEY @"USER_KEY"
 
+#define TEST_STRING @"export?DocID="
+
 enum item_types {
     
     TYPE_NEWS,

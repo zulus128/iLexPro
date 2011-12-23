@@ -13,6 +13,9 @@
     
     BOOL firsttime;
     BOOL removeable;
+
+    UIBarButtonItem* bi;
+    
 }
 
 - (id)initWithAddress:(NSString*)url del:(BOOL)del;
@@ -31,5 +34,8 @@
 
 @property (retain, nonatomic) ASIWebPageRequest *request;
 @property (retain, nonatomic) NSMutableArray *requestsInProgress;
+
+
+//@property (nonatomic, retain) IBOutlet UIButton* bk;
 
 @end

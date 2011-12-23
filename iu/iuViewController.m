@@ -22,6 +22,7 @@
 @synthesize lastReq;
 //@synthesize HTMLtext;
 @synthesize dataPath;
+//@synthesize bk;
 
 @synthesize request, requestsInProgress;
 
@@ -47,6 +48,7 @@
 
 - (void)bck {
     
+    [self.site stopLoading];
     [self.site goBack];
 }
 
@@ -87,7 +89,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     
-    UIBarButtonItem* bi = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(bck)] autorelease];
+    bi = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(bck)] autorelease];
     self.navigationItem.leftBarButtonItem = bi; 
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"28-star.png"] style: UIBarButtonItemStylePlain target:self action:@selector(addFav)] autorelease];    
@@ -96,7 +98,9 @@
     
     [super viewDidLoad];
     
-    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+//    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+    
+//    [site retain];
 }
 
 - (void)fetchURL:(NSURL *)url
@@ -158,10 +162,21 @@
 {
 	if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         self.lastReq = [theRequest.URL absoluteString];
-		[self fetchURL:[theRequest URL]];
-        NSLog(@"tapped");
-		return NO;
+//		[self fetchURL:[theRequest URL]];
+        NSLog(@"tapped: %@", [theRequest.URL absoluteString]);
+//		return NO;
 	}
+    
+    NSRange textRange;
+    textRange =[[[theRequest.URL absoluteString] lowercaseString] rangeOfString:[TEST_STRING lowercaseString]];
+    
+    if(textRange.location != NSNotFound) {
+        
+        [bi setEnabled:NO];
+    }
+    else
+        [bi setEnabled:self.site.canGoBack];
+
 	return YES;
 }
 
@@ -176,10 +191,12 @@
 //        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 //        [self.site loadRequest:requestObj];
 
+    [bi setEnabled:self.site.canGoBack];
+    
 
-//    [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
-//                                           cachePolicy: NSURLRequestReturnCacheDataElseLoad
-//                                       timeoutInterval: 10.0]];
+    [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
+                                           cachePolicy: NSURLRequestReturnCacheDataElseLoad
+                                       timeoutInterval: 10.0]];
 
     
     
@@ -194,9 +211,9 @@
     
 //    [self cacheFile];
  
-    NSString* urlAdress = [Common instance].surl;
-    NSURL *url = [NSURL URLWithString:urlAdress];
-    [self fetchURL:url];
+//    NSString* urlAdress = [Common instance].surl;
+//    NSURL *url = [NSURL URLWithString:urlAdress];
+//    [self fetchURL:url];
 }
 
 //- (void) cacheFile
@@ -245,10 +262,14 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
 
+    NSLog(@"finishLoad");
+    
     NSString *theTitle=[site stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.navigationItem.title = theTitle;
     
     [Common instance].surl = self.site.request.mainDocumentURL.absoluteString;
+
+    [bi setEnabled:self.site.canGoBack];
 
 //    self.HTMLtext = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
 }
@@ -256,6 +277,8 @@
 - (void)dealloc {
     
     self.lastReq = nil;
+    
+    [bi release];
     
     [super dealloc];
 }
