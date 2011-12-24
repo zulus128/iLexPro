@@ -81,7 +81,7 @@
         [vc1 release]; vc1 = nil;
         
         FavController* vc2 = [[FavController alloc] init];
-        vc2.title = @"Закладки";
+        vc2.title = @"Загруженные";
         UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:vc2];
         vc2.tabBarItem.image = [UIImage imageNamed:@"28-star.png"];        
         [vc2 release]; vc2 = nil;
@@ -189,25 +189,56 @@
 	[favs writeToFile:self.filePath atomically: YES];
 }
 
+- (void) sort: (NSMutableArray*) a {
+    
+    for (int i = 0; i < (a.count - 1); i++) {
+        for (int j = i + 1; j < a.count; j++) {
+            NSString* n1 = (NSString*)[a objectAtIndex:i];
+            NSString* n2 = (NSString*)[a objectAtIndex:j];
+            //            NSLog(@"i=%d, j=%d, n1 = %@, n2 = %@", i, j, n1, n2);
+            if ([n1 caseInsensitiveCompare:n2] == NSOrderedDescending) {
+                [a exchangeObjectAtIndex:i withObjectAtIndex:j];
+            }
+        }
+    }
+    
+    //   NSLog(@"a=%@", a);
+}
+
 - (int) getFavNewsCount {
     
+    NSMutableArray* arr1 = [[favs allKeys] mutableCopy];
+    [self sort:arr1];
+    for (int i = 0; i < arr1.count; i++) {
+        //        NSLog(@"i=%d, key=%@, val=%@", i, [arr1 objectAtIndex:i], [favs objectForKey:[arr1 objectAtIndex:i]]);
+        NSLog(@"i = %d, key = %@", i, [arr1 objectAtIndex:i]);
+    }
+
     correction = [favs count];
     //NSLog(@"count = %i", [favs count] - 1);
     return correction - 1;
+//    return correction;
 }
 
 - (Item*) getFavNewsAt: (int)num {
     
+    NSMutableArray* arr1 = [[favs allKeys] mutableCopy];
+    [self sort:arr1];
+//    for (int i = 0; i < arr1.count; i++) {
+//        NSLog(@"num = %d, i = %d, key = %@", num, i, [arr1 objectAtIndex:i]);
+//    }
+    
     //NSLog(@"num = %i", num);
     //    NSLog(@"%@",[favs allValues]);
-    NSArray* arr = [favs allValues];
-    id obj = [arr objectAtIndex:(num >= correction)?(num + 1):num];
-    if([obj isKindOfClass:[NSNumber class]]) {
-        
-        correction = num;
-        //  NSLog(@"correction = %i", correction);
-        obj = [arr objectAtIndex:(num >= correction)?(num + 1):num];
-    }
+//    NSArray* arr = [favs allValues];
+//    id obj = [arr objectAtIndex:(num >= correction)?(num + 1):num];
+    id obj = [favs objectForKey:[arr1 objectAtIndex:(num + 1)]];
+//    if([obj isKindOfClass:[NSNumber class]]) {
+//        
+//        correction = num;
+//        //  NSLog(@"correction = %i", correction);
+//        obj = [arr objectAtIndex:(num >= correction)?(num + 1):num];
+//    }
     
     Item* it = [[Item alloc] init];
     it.type = [[obj objectForKey:@"Type"] intValue];
@@ -225,18 +256,21 @@
 
 - (void) delFavNewsAt: (int)num {
     
-    [self getFavNewsAt:num];
+//    [self getFavNewsAt:num];
     
+    NSMutableArray* arr1 = [[favs allKeys] mutableCopy];
+    [self sort:arr1];
+
 //    NSLog(@"delete num = %i", num);
 //    NSLog(@"correction1 = %i", correction);
 //    NSLog(@"%@",[favs allKeys]);
     
-    NSArray* arr = [favs allKeys];
-    id obj = [arr objectAtIndex:(num >= correction)?(num + 1):num];
-    [favs removeObjectForKey:obj];
-    int cnt = [[favs objectForKey:@"count"] intValue];
-    cnt--;
-    [favs setValue:[NSNumber numberWithInt:cnt] forKey:@"count"];
+//    NSArray* arr = [favs allKeys];
+//    id obj = [arr objectAtIndex:(num >= correction)?(num + 1):num];
+    [favs removeObjectForKey:/*obj*/[arr1 objectAtIndex:(num + 1)]];
+//    int cnt = [[favs objectForKey:@"count"] intValue];
+//    cnt--;
+//    [favs setValue:[NSNumber numberWithInt:cnt] forKey:@"count"];
     
     [favs writeToFile:self.filePath atomically: YES];
 }

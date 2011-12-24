@@ -60,7 +60,7 @@
 - (void)addFav {
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Внимание" 
-                                                    message:@"Добавить в закладки?"
+                                                    message:@"Добавить в загруженные?"
                                                    delegate:self 
                                           cancelButtonTitle:@"Отмена"
                                           otherButtonTitles:@"Добавить",nil];
@@ -78,7 +78,7 @@
         it.link = self.lastReq;
         it.type = TYPE_ARTICLE;
         it.title = [site stringByEvaluatingJavaScriptFromString:@"document.title"];
-        it.full_text = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
+//        it.full_text = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
 
         NSLog(@"addFav: %@, %@", it.title, self.lastReq);
         [[Common instance]saveFav:it];
