@@ -158,7 +158,9 @@
 	
 	// It is strongly recommended that you set both a downloadCache and a downloadDestinationPath for all ASIWebPageRequests
 	[request setDownloadCache:[ASIDownloadCache sharedCache]];
+    [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
 	[request setCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
+    [request setSecondsToCache:60*60*24*365];
     
 	// This is actually the most efficient way to set a download path for ASIWebPageRequest, as it writes to the cache directly
 	[request setDownloadDestinationPath:[[ASIDownloadCache sharedCache] pathToStoreCachedResponseDataForRequest:request]];
