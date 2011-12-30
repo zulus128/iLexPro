@@ -57,13 +57,41 @@
 //    [[Common instance] removeTab:self];
 }
 
+- (void)rgtButtVis {
+
+    NSRange textRange;
+    textRange =[[self.site.request.mainDocumentURL.absoluteString lowercaseString] rangeOfString:[TEST_STRING1 lowercaseString]];
+        
+    [fi setEnabled:(textRange.location != NSNotFound)];
+
+}
+
 - (void)addFav {
     
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Внимание" 
-                                                    message:@"Добавить в загруженные?"
-                                                   delegate:self 
-                                          cancelButtonTitle:@"Отмена"
-                                          otherButtonTitles:@"Добавить",nil];
+    NSRange textRange;
+    textRange =[[self.site.request.mainDocumentURL.absoluteString lowercaseString] rangeOfString:[TEST_STRING1 lowercaseString]];
+    
+    UIAlertView* alert;
+    
+    if(textRange.location != NSNotFound) {
+        
+        alert = [[UIAlertView alloc] initWithTitle:@"Внимание" 
+                                                        message:@"Добавить в загруженные?"
+                                                       delegate:self 
+                                              cancelButtonTitle:@"Отмена"
+                                              otherButtonTitles:@"Добавить",nil];
+    }
+    else {
+
+        alert = [[UIAlertView alloc] initWithTitle:@"Нельзя добавить!" 
+                                           message:@"В загруженные можно добавлять только документы!"
+                                          delegate:self 
+                                 cancelButtonTitle:@"ОК"
+                                 otherButtonTitles:/*@"Добавить",*/nil];
+
+    }
+
+    
     [alert show];
     [alert release];
     
@@ -72,17 +100,22 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
     if (buttonIndex == 1) {
-        
-        NSLog(@"Ok");
-        Item* it = [[Item alloc] init];
-        it.link = self.lastReq;
-        it.type = TYPE_ARTICLE;
-        it.title = [site stringByEvaluatingJavaScriptFromString:@"document.title"];
-//        it.full_text = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
-
-        NSLog(@"addFav: %@, %@", it.title, self.lastReq);
-        [[Common instance]saveFav:it];
-        [it release];
+  
+        toFav = YES;
+        [Common instance].surl = [self.lastReq stringByReplacingOccurrencesOfString: TEST_STRING1 withString: TEST_STRING2];
+       
+        [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
+                                                 cachePolicy: NSURLRequestReturnCacheDataElseLoad
+                                             timeoutInterval: 10.0]];
+//        NSLog(@"Ok");
+//        Item* it = [[Item alloc] init];
+//        it.link = self.lastReq;
+//        it.type = TYPE_ARTICLE;
+//        it.title = [site stringByEvaluatingJavaScriptFromString:@"document.title"];
+////        it.full_text = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
+//        NSLog(@"addFav: %@, %@", it.title, self.lastReq);
+//        [[Common instance]saveFav:it];
+//        [it release];
     }
 }
 
@@ -92,13 +125,14 @@
     bi = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(bck)] autorelease];
     self.navigationItem.leftBarButtonItem = bi; 
 
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"28-star.png"] style: UIBarButtonItemStylePlain target:self action:@selector(addFav)] autorelease];    
+    fi = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"28-star.png"] style: UIBarButtonItemStylePlain target:self action:@selector(addFav)] autorelease]; 
+    self.navigationItem.rightBarButtonItem = fi;
     
     firsttime = YES;
     
     [super viewDidLoad];
     
-//    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
     
 //    [site retain];
 }
@@ -154,7 +188,7 @@
 		[self.site loadHTMLString:[theRequest responseString] baseURL:baseURL];
 	}
 	
-	NSLog(@"%@",[[theRequest url] absoluteString]);
+	NSLog(@"fetch: %@",[[theRequest url] absoluteString]);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)theRequest 
@@ -177,6 +211,15 @@
     else
         [bi setEnabled:self.site.canGoBack];
 
+    
+    [self rgtButtVis];
+    
+    if (toFav) {
+        
+        NSLog(@"toASI: %@", [theRequest URL]);
+        [self fetchURL:[theRequest URL]];
+    }
+    
 	return YES;
 }
 
@@ -184,36 +227,36 @@
 
     [super viewWillAppear:animated];
 
-//    if(![Common instance].fromFav) {
-//    
+    if(![Common instance].fromFav) {
+    
 //        NSString* urlAdress = [Common instance].surl;
 //        NSURL *url = [NSURL URLWithString:urlAdress];
 //        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 //        [self.site loadRequest:requestObj];
-
-    [bi setEnabled:self.site.canGoBack];
     
-
-    [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
-                                           cachePolicy: NSURLRequestReturnCacheDataElseLoad
-                                       timeoutInterval: 10.0]];
-
-    
-    
-//        }
-//    else {
-//        
+            [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
+                                                 cachePolicy: NSURLRequestReturnCacheDataElseLoad
+                                             timeoutInterval: 10.0]];
+        }
+    else {
+                
 //        NSString *path = [[NSBundle mainBundle] bundlePath];
 //        NSURL *baseURL = [NSURL fileURLWithPath:path];
 //        [self.site loadHTMLString: [Common instance].HTMLtext baseURL:baseURL];
-//
-//    }
+
+        NSString* urlAdress = [Common instance].surl;
+        NSURL *url = [NSURL URLWithString:urlAdress];
+        [self fetchURL:url];
+
+    }
     
 //    [self cacheFile];
- 
-//    NSString* urlAdress = [Common instance].surl;
-//    NSURL *url = [NSURL URLWithString:urlAdress];
-//    [self fetchURL:url];
+        
+    [bi setEnabled:self.site.canGoBack];
+    [self rgtButtVis];
+    toFav = NO;
+    [Common instance].fromFav = NO;
+
 }
 
 //- (void) cacheFile
@@ -271,6 +314,23 @@
 
     [bi setEnabled:self.site.canGoBack];
 
+    [self rgtButtVis];
+
+    if(toFav) {
+    
+//        NSLog(@"Ok to Fav");
+        Item* it = [[Item alloc] init];
+        it.link = [Common instance].surl;
+        it.type = TYPE_ARTICLE;
+        it.title = [site stringByEvaluatingJavaScriptFromString:@"document.title"];
+//        it.full_text = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
+        NSLog(@"addFav: %@, %@", it.title, [Common instance].surl);
+        [[Common instance]saveFav:it];
+        [it release];
+    }
+
+    toFav = NO;
+    
 //    self.HTMLtext = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
 }
 
@@ -279,6 +339,7 @@
     self.lastReq = nil;
     
     [bi release];
+    [fi release];
     
     [super dealloc];
 }

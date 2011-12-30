@@ -15,7 +15,9 @@
     BOOL removeable;
 
     UIBarButtonItem* bi;
+    UIBarButtonItem* fi;
     
+    BOOL toFav;
 }
 
 - (id)initWithAddress:(NSString*)url del:(BOOL)del;
@@ -31,6 +33,7 @@
 @property (nonatomic, retain) NSString* dataPath;
 
 - (void)fetchURL:(NSURL *)url;
+- (void)rgtButtVis;
 
 @property (retain, nonatomic) ASIWebPageRequest *request;
 @property (retain, nonatomic) NSMutableArray *requestsInProgress;

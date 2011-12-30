@@ -25,6 +25,8 @@
 #define USER_KEY @"USER_KEY"
 
 #define TEST_STRING @"export?DocID="
+#define TEST_STRING1 @"lexpro.ru/document/"
+#define TEST_STRING2 @"lexpro.ru/stream/documents/print?DocID="
 
 enum item_types {
     
