@@ -144,7 +144,11 @@
     
 	[request setDelegate:nil];
 	[request cancel];
-	[self setRequest:[ASIWebPageRequest requestWithURL:url]];
+	
+//    ASIHTTPRequest *req                     = [ASIHTTPRequest requestWithURL:url];
+//    request.shouldAttemptPersistentConnection   = NO;
+    
+    [self setRequest:[ASIWebPageRequest requestWithURL:url]];
     
 	[request setDidFailSelector:@selector(webPageFetchFailed:)];
 	[request setDidFinishSelector:@selector(webPageFetchSucceeded:)];
