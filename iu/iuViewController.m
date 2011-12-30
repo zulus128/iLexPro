@@ -333,6 +333,14 @@
         NSLog(@"addFav: %@, %@", it.title, [Common instance].surl);
         [[Common instance]saveFav:it];
         [it release];
+       
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Загружено!" 
+                                               message:@"Вы можете найти офф-лайн версию документа в закладке 'Загруженные'."
+                                              delegate:self 
+                                     cancelButtonTitle:@"ОК"
+                                     otherButtonTitles:/*@"Добавить",*/nil];
+        [alert show];
+        [alert release];
     }
 
     toFav = NO;
