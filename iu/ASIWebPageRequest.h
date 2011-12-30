@@ -23,13 +23,13 @@ typedef enum _ASIWebContentType {
 
 // These correspond with the urlReplacementMode property of ASIWebPageRequest
 typedef enum _ASIURLReplacementMode {
-
+    
 	// Don't modify html or css content at all
     ASIDontModifyURLs = 0,
-
+    
 	// Replace external resources urls (images, stylesheets etc) with data uris, so their content is embdedded directly in the html/css
     ASIReplaceExternalResourcesWithData = 1,
-
+    
 	// Replace external resource urls with the url of locally cached content
 	// You must set the baseURL of a WebView / UIWebView to a file url pointing at the downloadDestinationPath of the main ASIWebPageRequest if you want to display your content
     // See the Mac or iPhone example projects for a demonstration of how to do this
@@ -40,27 +40,27 @@ typedef enum _ASIURLReplacementMode {
 
 
 @interface ASIWebPageRequest : ASIHTTPRequest {
-
+    
 	// Each ASIWebPageRequest for an HTML or CSS file creates its own internal queue to download external resources
 	ASINetworkQueue *externalResourceQueue;
-
+    
 	// This dictionary stores a list of external resources to download, along with their content-type data or a path to the data
 	NSMutableDictionary *resourceList;
-
+    
 	// Used internally for parsing HTML (with libxml)
 	struct _xmlDoc *doc;
-
+    
 	// If the response is an HTML or CSS file, this will be set so the content can be correctly parsed when it has finished fetching external resources
 	ASIWebContentType webContentType;
-
+    
 	// Stores a reference to the ASIWebPageRequest that created this request
 	// Note that a parentRequest can also have a parent request because ASIWebPageRequests parse their contents to look for external resources recursively
 	// For example, a request for an image can be created by a request for a stylesheet which was created by a request for a web page
 	ASIWebPageRequest *parentRequest;
-
+    
 	// Controls what ASIWebPageRequest does with external resources. See the notes above for more.
 	ASIURLReplacementMode urlReplacementMode;
-
+    
 	// When set to NO, loading will stop when an external resource fails to load. Defaults to YES
 	BOOL shouldIgnoreExternalResourceErrors;
 }

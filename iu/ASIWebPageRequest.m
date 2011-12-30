@@ -102,7 +102,7 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 - (void)parseAsCSS
 {
 	webContentType = ASICSSWebContentType;
-
+    
 	NSString *responseCSS = nil;
 	NSError *err = nil;
 	if ([self downloadDestinationPath]) {
@@ -118,9 +118,9 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 		return;
 	}
 	NSArray *urls = [[self class] CSSURLsFromString:responseCSS];
-
+    
 	[self setResourceList:[NSMutableDictionary dictionary]];
-
+    
 	for (NSString *theURL in urls) {
 		[self addURLToFetch:theURL];
 	}
@@ -129,7 +129,7 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 		[super markAsFinished];
 		return;
 	}
-
+    
 	// Create a new request for every item in the queue
 	[[self externalResourceQueue] cancelAllOperations];
 	[self setExternalResourceQueue:[ASINetworkQueue queue]];
@@ -214,16 +214,16 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 - (void)parseAsHTML
 {
 	webContentType = ASIHTMLWebContentType;
-
+    
 	// Only allow parsing of a single document at a time
 	[xmlParsingLock lock];
-
+    
 	if (![requestsUsingXMLParser count]) {
 		xmlInitParser();
 	}
 	[requestsUsingXMLParser addObject:self];
-
-
+    
+    
     /* Load XML document */
 	if ([self downloadDestinationPath]) {
 		doc = htmlReadFile([[self downloadDestinationPath] cStringUsingEncoding:NSUTF8StringEncoding], [self encodingName], HTML_PARSE_NONET | HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
@@ -235,20 +235,20 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 		[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:101 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Error: unable to parse reponse XML",NSLocalizedDescriptionKey,nil]]];
 		return;
     }
-	
+    
 	[self setResourceList:[NSMutableDictionary dictionary]];
-
+    
     // Populate the list of URLS to download
     [self readResourceURLs];
-
+    
 	if ([self error] || ![[self resourceList] count]) {
 		[requestsUsingXMLParser removeObject:self];
 		xmlFreeDoc(doc);
 		doc = NULL;
 	}
-
+    
 	[xmlParsingLock unlock];
-
+    
 	if ([self error]) {
 		return;
 	} else if (![[self resourceList] count]) {
@@ -256,7 +256,7 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 		[super markAsFinished];
 		return;
 	}
-	
+    
 	// Create a new request for every item in the queue
 	[[self externalResourceQueue] cancelAllOperations];
 	[self setExternalResourceQueue:[ASINetworkQueue queue]];
@@ -349,25 +349,25 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 			}
 		} else {
 			[xmlParsingLock lock];
-
+            
 			[self updateResourceURLs];
-
+            
 			if (![self error]) {
-
+                
 				// We'll use the xmlsave API so we can strip the xml declaration
 				xmlSaveCtxtPtr saveContext;
-
+                
 				if ([self downloadDestinationPath]) {
-
+                    
 					// Truncate the file first
 					[[[[NSFileManager alloc] init] autorelease] createFileAtPath:[self downloadDestinationPath] contents:nil attributes:nil];
-
+                    
 					saveContext = xmlSaveToFd([[NSFileHandle fileHandleForWritingAtPath:[self downloadDestinationPath]] fileDescriptor],NULL,2); // 2 == XML_SAVE_NO_DECL, this isn't declared on Mac OS 10.5
 					xmlSaveDoc(saveContext, doc);
 					xmlSaveClose(saveContext);
-
+                    
 				} else {
-	#if TARGET_OS_MAC && MAC_OS_X_VERSION_MAX_ALLOWED <= __MAC_10_5
+#if TARGET_OS_MAC && MAC_OS_X_VERSION_MAX_ALLOWED <= __MAC_10_5
 					// xmlSaveToBuffer() is not implemented in the 10.5 version of libxml
 					NSString *tempPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[[NSProcessInfo processInfo] globallyUniqueString]];
 					[[[[NSFileManager alloc] init] autorelease] createFileAtPath:tempPath contents:nil attributes:nil];
@@ -375,16 +375,16 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 					xmlSaveDoc(saveContext, doc);
 					xmlSaveClose(saveContext);
 					[self setRawResponseData:[NSMutableData dataWithContentsOfFile:tempPath]];
-	#else
+#else
 					xmlBufferPtr buffer = xmlBufferCreate();
 					saveContext = xmlSaveToBuffer(buffer,NULL,2); // 2 == XML_SAVE_NO_DECL, this isn't declared on Mac OS 10.5
 					xmlSaveDoc(saveContext, doc);
 					xmlSaveClose(saveContext);
 					[self setRawResponseData:[[[NSMutableData alloc] initWithBytes:buffer->content length:buffer->use] autorelease]];
 					xmlBufferFree(buffer);
-	#endif
+#endif
 				}
-
+                
 				// Strip the content encoding if the original response was gzipped
 				if ([self isResponseCompressed]) {
 					NSMutableDictionary *headers = [[[self responseHeaders] mutableCopy] autorelease];
@@ -392,10 +392,10 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 					[self setResponseHeaders:headers];
 				}
 			}
-
+            
 			xmlFreeDoc(doc);
 			doc = nil;
-
+            
 			[requestsUsingXMLParser removeObject:self];
 			if (![requestsUsingXMLParser count]) {
 				xmlCleanupParser();
@@ -406,16 +406,16 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 	if (![self parentRequest]) {
 		[[self class] updateProgressIndicator:&downloadProgressDelegate withProgress:contentLength ofTotal:contentLength];
 	}
-
+    
 	NSMutableDictionary *newHeaders = [[[self responseHeaders] mutableCopy] autorelease];
 	[newHeaders removeObjectForKey:@"Content-Encoding"];
 	[self setResponseHeaders:newHeaders];
-
+    
 	// Write the parsed content back to the cache
 	if ([self urlReplacementMode] != ASIDontModifyURLs) {
 		[[self downloadCache] storeResponseForRequest:self maxAge:[self secondsToCache]];
 	}
-
+    
 	[super requestFinished];
 	[super markAsFinished];
 }
@@ -428,7 +428,7 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 		[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:101 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Error: unable to create new XPath context",NSLocalizedDescriptionKey,nil]]];
 		return;
     }
-
+    
     // Evaluate xpath expression
     xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression(xpathExpr, xpathCtx);
     if(xpathObj == NULL) {
@@ -436,21 +436,21 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 		[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:101 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Error: unable to evaluate XPath expression!",NSLocalizedDescriptionKey,nil]]];
 		return;
     }
-	
+    
 	// Now loop through our matches
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
-
+    
     int size = (nodes) ? nodes->nodeNr : 0;
 	int i;
     for(i = size - 1; i >= 0; i--) {
 		assert(nodes->nodeTab[i]);
 		NSString *parentName  = [NSString stringWithCString:(char *)nodes->nodeTab[i]->parent->name encoding:[self responseEncoding]];
 		NSString *nodeName = [NSString stringWithCString:(char *)nodes->nodeTab[i]->name encoding:[self responseEncoding]];
-
+        
 		xmlChar *nodeValue = xmlNodeGetContent(nodes->nodeTab[i]);
 		NSString *value = [NSString stringWithCString:(char *)nodeValue encoding:[self responseEncoding]];
 		xmlFree(nodeValue);
-
+        
 		// Our xpath query matched all <link> elements, but we're only interested in stylesheets
 		// We do the work here rather than in the xPath query because the query is case-sensitive, and we want to match on 'stylesheet', 'StyleSHEEt' etc
 		if ([[parentName lowercaseString] isEqualToString:@"link"]) {
@@ -462,23 +462,23 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 					[self addURLToFetch:value];
 				}
 			}
-
-		// Parse the content of <style> tags and style attributes to find external image urls or external css files
+            
+            // Parse the content of <style> tags and style attributes to find external image urls or external css files
 		} else if ([[nodeName lowercaseString] isEqualToString:@"style"]) {
 			NSArray *externalResources = [[self class] CSSURLsFromString:value];
 			for (NSString *theURL in externalResources) {
 				[self addURLToFetch:theURL];
 			}
-
-		// Parse the content of <source src=""> tags (HTML 5 audio + video)
-		// We explictly disable the download of files with .webm, .ogv and .ogg extensions, since it's highly likely they won't be useful to us
+            
+            // Parse the content of <source src=""> tags (HTML 5 audio + video)
+            // We explictly disable the download of files with .webm, .ogv and .ogg extensions, since it's highly likely they won't be useful to us
 		} else if ([[parentName lowercaseString] isEqualToString:@"source"] || [[parentName lowercaseString] isEqualToString:@"audio"]) {
 			NSString *fileExtension = [[value pathExtension] lowercaseString];
 			if (![fileExtension isEqualToString:@"ogg"] && ![fileExtension isEqualToString:@"ogv"] && ![fileExtension isEqualToString:@"webm"]) {
 				[self addURLToFetch:value];
 			}
-
-		// For all other elements matched by our xpath query (except hyperlinks), add the content as an external url to fetch
+            
+            // For all other elements matched by our xpath query (except hyperlinks), add the content as an external url to fetch
 		} else if (![[parentName lowercaseString] isEqualToString:@"a"]) {
 			[self addURLToFetch:value];
 		}
@@ -486,7 +486,7 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 			nodes->nodeTab[i] = NULL;
 		}
     }
-	
+    
 	xmlXPathFreeObject(xpathObj);
     xmlXPathFreeContext(xpathCtx); 
 }
@@ -517,7 +517,7 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 		[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:101 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Error: unable to create new XPath context",NSLocalizedDescriptionKey,nil]]];
 		return;
 	}
-
+    
  	// Evaluate xpath expression
 	xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression(xpathExpr, xpathCtx);
 	if(xpathObj == NULL) {
@@ -525,7 +525,7 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 		[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:101 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Error: unable to evaluate XPath expression!",NSLocalizedDescriptionKey,nil]]];
 		return;
 	}
-
+    
 	// Loop through all the matches, replacing urls where nescessary
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	int size = (nodes) ? nodes->nodeNr : 0;
@@ -534,11 +534,11 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 		assert(nodes->nodeTab[i]);
 		NSString *parentName  = [NSString stringWithCString:(char *)nodes->nodeTab[i]->parent->name encoding:[self responseEncoding]];
 		NSString *nodeName  = [NSString stringWithCString:(char *)nodes->nodeTab[i]->name encoding:[self responseEncoding]];
-
+        
 		xmlChar *nodeValue = xmlNodeGetContent(nodes->nodeTab[i]);
 		NSString *value = [NSString stringWithCString:(char *)nodeValue encoding:[self responseEncoding]];
 		xmlFree(nodeValue);
-
+        
 		// Replace external urls in <style> tags or in style attributes
 		if ([[nodeName lowercaseString] isEqualToString:@"style"]) {
 			NSArray *externalResources = [[self class] CSSURLsFromString:value];
@@ -551,22 +551,22 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 				}
 			}
 			xmlNodeSetContent(nodes->nodeTab[i], (xmlChar *)[value cStringUsingEncoding:[self responseEncoding]]);
-
-		// Replace relative hyperlinks with absolute ones, since we will need to set a local baseURL when loading this in a web view
+            
+            // Replace relative hyperlinks with absolute ones, since we will need to set a local baseURL when loading this in a web view
 		} else if ([self urlReplacementMode] == ASIReplaceExternalResourcesWithLocalURLs && [[parentName lowercaseString] isEqualToString:@"a"]) {
 			NSString *newURL = [[NSURL URLWithString:value relativeToURL:[self url]] absoluteString];
 			if (newURL) {
 				xmlNodeSetContent(nodes->nodeTab[i], (xmlChar *)[newURL cStringUsingEncoding:[self responseEncoding]]);
 			}
-
-		// Replace all other external resource urls
+            
+            // Replace all other external resource urls
 		} else {
 			NSString *newURL = [self contentForExternalURL:value];
 			if (newURL) {
 				xmlNodeSetContent(nodes->nodeTab[i], (xmlChar *)[newURL cStringUsingEncoding:[self responseEncoding]]);
 			}
 		}
-
+        
 		if (nodes->nodeTab[i]->type != XML_NAMESPACE_DECL) {
 			nodes->nodeTab[i] = NULL;
 		}
@@ -701,8 +701,8 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 	// This ends up being quite efficient, as we download directly to the cache
 	if ([self downloadCache]) {
 		return [[self downloadCache] pathToStoreCachedResponseDataForRequest:theRequest];
-
-	// This is a fallback for when we don't have a download cache - we store the external resource in a file in the temporary directory
+        
+        // This is a fallback for when we don't have a download cache - we store the external resource in a file in the temporary directory
 	} else {
 		// Borrowed from: http://stackoverflow.com/questions/652300/using-md5-hash-on-a-string-in-cocoa
 		const char *cStr = [[[theRequest url] absoluteString] UTF8String];
