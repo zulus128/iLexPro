@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIWebPageRequest.h"
 
 @interface FavController : UITableViewController
+
+@property (nonatomic, retain) IBOutlet UIWebView* fsite;
+@property (retain, nonatomic) ASIWebPageRequest *request;
+@property (retain, nonatomic) NSMutableArray *requestsInProgress;
 
 @end

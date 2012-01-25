@@ -8,13 +8,6 @@
 
 #import "iuViewController.h"
 #import "Common.h"
-#import "ASIDownloadCache.h"
-
-// Private stuff
-@interface iuViewController ()
-- (void)webPageFetchFailed:(ASIHTTPRequest *)theRequest;
-- (void)webPageFetchSucceeded:(ASIHTTPRequest *)theRequest;
-@end
 
 @implementation iuViewController
 
@@ -24,7 +17,7 @@
 @synthesize dataPath;
 //@synthesize bk;
 
-@synthesize request, requestsInProgress;
+//@synthesize request, requestsInProgress;
 
 - (void)didReceiveMemoryWarning
 {
@@ -99,6 +92,15 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
+    toFav = NO;
+    
+    if (alertView.tag == ALERT_TAG) {
+    
+        [Common instance].tabBar.selectedIndex = 1;
+
+        return;
+    }
+    
     if (buttonIndex == 1) {
   
         toFav = YES;
@@ -132,75 +134,26 @@
     
     [super viewDidLoad];
     
-    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+//    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
     
 //    [site retain];
+    
+    NSLog(@"surl = %@", [Common instance].surl);
+    
+    [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
+                                             cachePolicy: NSURLRequestReturnCacheDataElseLoad
+                                         timeoutInterval: 10.0]];
+
 }
 
-- (void)fetchURL:(NSURL *)url
-{
-    
-	[self setRequestsInProgress:[NSMutableArray array]];
-    
-	[request setDelegate:nil];
-	[request cancel];
-	
-//    ASIHTTPRequest *req                     = [ASIHTTPRequest requestWithURL:url];
-//    request.shouldAttemptPersistentConnection   = NO;
-    
-    [self setRequest:[ASIWebPageRequest requestWithURL:url]];
-    
-	[request setDidFailSelector:@selector(webPageFetchFailed:)];
-	[request setDidFinishSelector:@selector(webPageFetchSucceeded:)];
-	[request setDelegate:self];
-	[request setDownloadProgressDelegate:self];
-	[request setUrlReplacementMode:(YES /*1111*/ ? ASIReplaceExternalResourcesWithData : ASIReplaceExternalResourcesWithLocalURLs)];
-	
-	// It is strongly recommended that you set both a downloadCache and a downloadDestinationPath for all ASIWebPageRequests
-	[request setDownloadCache:[ASIDownloadCache sharedCache]];
-    [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
-	[request setCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
-    [request setSecondsToCache:60*60*24*365];
-    
-	// This is actually the most efficient way to set a download path for ASIWebPageRequest, as it writes to the cache directly
-	[request setDownloadDestinationPath:[[ASIDownloadCache sharedCache] pathToStoreCachedResponseDataForRequest:request]];
-	
-	[[ASIDownloadCache sharedCache] setShouldRespectCacheControlHeaders:NO];
-	[request startAsynchronous];
-}
-
-- (void)webPageFetchFailed:(ASIHTTPRequest *)theRequest
-{
-	NSLog(@"%@",[NSString stringWithFormat:@"Something went wrong: %@",[theRequest error]]);
-}
-
-- (void)webPageFetchSucceeded:(ASIHTTPRequest *)theRequest
-{
-	NSURL *baseURL;
-	if (YES /*1111*/) {
-		baseURL = [theRequest url];
-        
-        // If we're using ASIReplaceExternalResourcesWithLocalURLs, we must set the baseURL to point to our locally cached file
-	} else {
-		baseURL = [NSURL fileURLWithPath:[request downloadDestinationPath]];
-	}
-    
-	if ([theRequest downloadDestinationPath]) {
-		NSString *response = [NSString stringWithContentsOfFile:[theRequest downloadDestinationPath] encoding:[theRequest responseEncoding] error:nil];
-//		[responseField setText:response];
-		[self.site loadHTMLString:response baseURL:baseURL];
-	} else {
-//		[responseField setText:[theRequest responseString]];
-		[self.site loadHTMLString:[theRequest responseString] baseURL:baseURL];
-	}
-	
-	NSLog(@"fetch: %@",[[theRequest url] absoluteString]);
-}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)theRequest 
  navigationType:(UIWebViewNavigationType)navigationType
 {
-	if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+	
+     NSLog(@"shouldStartLoadWithRequest: %@", [theRequest URL]);
+    
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         self.lastReq = [theRequest.URL absoluteString];
 //		[self fetchURL:[theRequest URL]];
         NSLog(@"tapped: %@", [theRequest.URL absoluteString]);
@@ -222,8 +175,13 @@
     
     if (toFav) {
         
-        NSLog(@"toASI: %@", [theRequest URL]);
-        [self fetchURL:[theRequest URL]];
+        [Common instance].bURL = [theRequest URL];
+        [Common instance].bFav = YES;
+        [Common instance].tabBar.selectedIndex = 1;
+
+//        NSLog(@"toASI: %@", [theRequest URL]);
+//        [self fetchURL:[theRequest URL]];
+        return NO;
     }
     
 	return YES;
@@ -233,28 +191,22 @@
 
     [super viewWillAppear:animated];
 
-    if(![Common instance].fromFav) {
+//    if(![Common instance].fromFav) {
     
+//    NSLog(@"surl = %@", [Common instance].surl);
+//    
+//            [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
+//                                                 cachePolicy: NSURLRequestReturnCacheDataElseLoad
+//                                             timeoutInterval: 10.0]];
+//        }
+//    else {
+//                
+//
 //        NSString* urlAdress = [Common instance].surl;
 //        NSURL *url = [NSURL URLWithString:urlAdress];
-//        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-//        [self.site loadRequest:requestObj];
-    
-            [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
-                                                 cachePolicy: NSURLRequestReturnCacheDataElseLoad
-                                             timeoutInterval: 10.0]];
-        }
-    else {
-                
-//        NSString *path = [[NSBundle mainBundle] bundlePath];
-//        NSURL *baseURL = [NSURL fileURLWithPath:path];
-//        [self.site loadHTMLString: [Common instance].HTMLtext baseURL:baseURL];
-
-        NSString* urlAdress = [Common instance].surl;
-        NSURL *url = [NSURL URLWithString:urlAdress];
-        [self fetchURL:url];
-
-    }
+//        [self fetchURL:url];
+//
+//    }
     
 //    [self cacheFile];
         
@@ -339,6 +291,8 @@
                                               delegate:self 
                                      cancelButtonTitle:@"ОК"
                                      otherButtonTitles:/*@"Добавить",*/nil];
+        alert.tag = ALERT_TAG;
+
         [alert show];
         [alert release];
     }
@@ -347,6 +301,10 @@
     
 //    self.HTMLtext = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
 }
+
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    
+//}
 
 - (void)dealloc {
     

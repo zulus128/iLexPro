@@ -22,6 +22,9 @@
 @synthesize HTMLtext;
 @synthesize fromFav;
 
+@synthesize bFav;
+@synthesize bURL;
+
 + (Common*) instance  {
 	
 	static Common* instance;

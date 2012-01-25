@@ -28,6 +28,8 @@
 #define TEST_STRING1 @"lexpro.ru/document/"
 #define TEST_STRING2 @"lexpro.ru/stream/documents/print?DocID="
 
+#define ALERT_TAG 1234
+
 enum item_types {
     
     TYPE_NEWS,
@@ -62,5 +64,8 @@ enum item_types {
 @property (nonatomic, retain) NSString* surl;
 @property (nonatomic, retain) NSString* HTMLtext;
 @property (assign, readwrite) BOOL fromFav;
+
+@property (assign, readwrite) BOOL bFav;
+@property (nonatomic, retain) NSURL* bURL;
 
 @end

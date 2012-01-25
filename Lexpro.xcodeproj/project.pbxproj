@@ -78,14 +78,14 @@
 		DD50D3AF1496CDEA009768B8 /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
 		DD50D3B01496CDEA009768B8 /* AboutController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutController.xib; sourceTree = "<group>"; };
 		DD7F130D1497B5F400CDA916 /* 20110610-051616.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "20110610-051616.jpeg"; sourceTree = "<group>"; };
-		DD830E0313F644BF00B3389A /* iLexPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLexPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD830E0313F644BF00B3389A /* Lexpro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lexpro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD830E0713F644BF00B3389A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DD830E0913F644BF00B3389A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DD830E0B13F644BF00B3389A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DD830E0F13F644BF00B3389A /* iUnRewards-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iUnRewards-Info.plist"; sourceTree = "<group>"; };
 		DD830E1113F644BF00B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DD830E1313F644C000B3389A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DD830E1513F644C000B3389A /* iLexPro-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iLexPro-Prefix.pch"; sourceTree = "<group>"; };
+		DD830E1513F644C000B3389A /* Lexpro-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lexpro-Prefix.pch"; sourceTree = "<group>"; };
 		DD830E1613F644C000B3389A /* iuAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iuAppDelegate.h; sourceTree = "<group>"; };
 		DD830E1713F644C000B3389A /* iuAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iuAppDelegate.m; sourceTree = "<group>"; };
 		DD830E1A13F644C000B3389A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		DD830E0413F644BF00B3389A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DD830E0313F644BF00B3389A /* iLexPro.app */,
+				DD830E0313F644BF00B3389A /* Lexpro.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -312,7 +312,7 @@
 				DD830E0F13F644BF00B3389A /* iUnRewards-Info.plist */,
 				DD830E1013F644BF00B3389A /* InfoPlist.strings */,
 				DD830E1313F644C000B3389A /* main.m */,
-				DD830E1513F644C000B3389A /* iLexPro-Prefix.pch */,
+				DD830E1513F644C000B3389A /* Lexpro-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -347,9 +347,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DD830E0213F644BF00B3389A /* iLexPro */ = {
+		DD830E0213F644BF00B3389A /* Lexpro */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "iLexPro" */;
+			buildConfigurationList = DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "Lexpro" */;
 			buildPhases = (
 				DD830DFF13F644BF00B3389A /* Sources */,
 				DD830E0013F644BF00B3389A /* Frameworks */,
@@ -359,9 +359,9 @@
 			);
 			dependencies = (
 			);
-			name = iLexPro;
+			name = Lexpro;
 			productName = iu;
-			productReference = DD830E0313F644BF00B3389A /* iLexPro.app */;
+			productReference = DD830E0313F644BF00B3389A /* Lexpro.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -372,7 +372,7 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "iLexPro" */;
+			buildConfigurationList = DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "Lexpro" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -384,7 +384,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DD830E0213F644BF00B3389A /* iLexPro */,
+				DD830E0213F644BF00B3389A /* Lexpro */,
 			);
 		};
 /* End PBXProject section */
@@ -548,11 +548,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iu/iLexPro-Prefix.pch";
+				GCC_PREFIX_HEADER = "iu/Lexpro-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
-				PRODUCT_NAME = iLexPro;
+				PRODUCT_NAME = Lexpro;
 				PROVISIONING_PROFILE = "DEC4A493-9DEA-4504-BEA3-4851FED3BE42";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -564,11 +564,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: VADIM KASSIN (744XFE3JS8)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iu/iLexPro-Prefix.pch";
+				GCC_PREFIX_HEADER = "iu/Lexpro-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "iu/iUnRewards-Info.plist";
-				PRODUCT_NAME = iLexPro;
+				PRODUCT_NAME = Lexpro;
 				PROVISIONING_PROFILE = "DEC4A493-9DEA-4504-BEA3-4851FED3BE42";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -578,7 +578,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "iLexPro" */ = {
+		DD830DFD13F644BE00B3389A /* Build configuration list for PBXProject "Lexpro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD830E3913F644C000B3389A /* Debug */,
@@ -587,7 +587,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "iLexPro" */ = {
+		DD830E3B13F644C000B3389A /* Build configuration list for PBXNativeTarget "Lexpro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DD830E3C13F644C000B3389A /* Debug */,

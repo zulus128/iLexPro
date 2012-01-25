@@ -8,8 +8,19 @@
 
 #import "FavController.h"
 #import "Common.h"
+#import "ASIDownloadCache.h"
+
+// Private stuff
+@interface FavController ()
+- (void)webPageFetchFailed:(ASIHTTPRequest *)theRequest;
+- (void)webPageFetchSucceeded:(ASIHTTPRequest *)theRequest;
+@end
 
 @implementation FavController
+
+@synthesize fsite;
+@synthesize request;
+@synthesize requestsInProgress;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,6 +39,69 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)fetchURL:(NSURL *)url
+{
+    
+	[self setRequestsInProgress:[NSMutableArray array]];
+    
+	[request setDelegate:nil];
+	[request cancel];
+	
+    //    ASIHTTPRequest *req                     = [ASIHTTPRequest requestWithURL:url];
+    //    request.shouldAttemptPersistentConnection   = NO;
+    
+    [self setRequest:[ASIWebPageRequest requestWithURL:url]];
+    
+	[request setDidFailSelector:@selector(webPageFetchFailed:)];
+	[request setDidFinishSelector:@selector(webPageFetchSucceeded:)];
+	[request setDelegate:self];
+	[request setDownloadProgressDelegate:self];
+	[request setUrlReplacementMode:(YES /*1111*/ ? ASIReplaceExternalResourcesWithData : ASIReplaceExternalResourcesWithLocalURLs)];
+	
+	// It is strongly recommended that you set both a downloadCache and a downloadDestinationPath for all ASIWebPageRequests
+	[request setDownloadCache:[ASIDownloadCache sharedCache]];
+    [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+	[request setCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
+    [request setSecondsToCache:60*60*24*365];
+    
+	// This is actually the most efficient way to set a download path for ASIWebPageRequest, as it writes to the cache directly
+	[request setDownloadDestinationPath:[[ASIDownloadCache sharedCache] pathToStoreCachedResponseDataForRequest:request]];
+	
+	[[ASIDownloadCache sharedCache] setShouldRespectCacheControlHeaders:NO];
+	[request startAsynchronous];
+}
+
+- (void)webPageFetchFailed:(ASIHTTPRequest *)theRequest
+{
+	NSLog(@"%@",[NSString stringWithFormat:@"Something went wrong: %@",[theRequest error]]);
+}
+
+- (void)webPageFetchSucceeded:(ASIHTTPRequest *)theRequest
+{
+    
+//    toFav = NO;
+    
+	NSURL *baseURL;
+	if (YES /*1111*/) {
+		baseURL = [theRequest url];
+        
+        // If we're using ASIReplaceExternalResourcesWithLocalURLs, we must set the baseURL to point to our locally cached file
+	} else {
+		baseURL = [NSURL fileURLWithPath:[request downloadDestinationPath]];
+	}
+    
+	if ([theRequest downloadDestinationPath]) {
+		NSString *response = [NSString stringWithContentsOfFile:[theRequest downloadDestinationPath] encoding:[theRequest responseEncoding] error:nil];
+        //		[responseField setText:response];
+		[self.fsite loadHTMLString:response baseURL:baseURL];
+	} else {
+        //		[responseField setText:[theRequest responseString]];
+		[self.fsite loadHTMLString:[theRequest responseString] baseURL:baseURL];
+	}
+	
+	NSLog(@"fetch: %@",[[theRequest url] absoluteString]);
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -39,6 +113,9 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+
 }
 
 - (void)viewDidUnload
@@ -52,6 +129,21 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    
+    if([Common instance].bFav) {
+        
+        self.tableView.hidden = YES;
+        
+        NSLog(@"toASI: %@", [Common instance].bURL);
+        [self fetchURL:[Common instance].bURL];
+    }
+    else {
+
+        self.tableView.hidden = NO;
+
+    }
+    
+    [Common instance].bFav = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
