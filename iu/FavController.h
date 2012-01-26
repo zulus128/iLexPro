@@ -9,10 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "ASIWebPageRequest.h"
 
-@interface FavController : UITableViewController
+@interface FavController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    
+    UIWebView* aWebView;
+    UITableView* tableView;
+        UIBarButtonItem* bi;
+}
 
-@property (nonatomic, retain) IBOutlet UIWebView* fsite;
+//@property (nonatomic, retain) IBOutlet UIWebView* fsite;
 @property (retain, nonatomic) ASIWebPageRequest *request;
 @property (retain, nonatomic) NSMutableArray *requestsInProgress;
+
+- (void)lftButtVis;
+- (void)bck;
 
 @end

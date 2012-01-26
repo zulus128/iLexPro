@@ -177,6 +177,7 @@
         
         [Common instance].bURL = [theRequest URL];
         [Common instance].bFav = YES;
+        [Common instance].bTitle = [self.site stringByEvaluatingJavaScriptFromString:@"document.title"];
         [Common instance].tabBar.selectedIndex = 1;
 
 //        NSLog(@"toASI: %@", [theRequest URL]);

@@ -24,6 +24,7 @@
 
 @synthesize bFav;
 @synthesize bURL;
+@synthesize bTitle;
 
 + (Common*) instance  {
 	
@@ -84,7 +85,7 @@
         [vc1 release]; vc1 = nil;
         
         FavController* vc2 = [[FavController alloc] init];
-        vc2.title = @"Загруженные";
+        vc2.title = ZAGR_TITLE;
         UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:vc2];
         vc2.tabBarItem.image = [UIImage imageNamed:@"28-star.png"];        
         [vc2 release]; vc2 = nil;
@@ -188,7 +189,7 @@
 //                                                           @"Image",
                                                            @"Descr",
                                                            nil]];
-	[favs setObject:f forKey:[NSString stringWithFormat:@"Favourite%d", cnt]]; 
+	[favs setObject:f forKey:[NSString stringWithFormat:@"Favourite%02d", cnt]]; 
 	[favs writeToFile:self.filePath atomically: YES];
 }
 

@@ -18,18 +18,18 @@
 
 @implementation FavController
 
-@synthesize fsite;
+//@synthesize fsite;
 @synthesize request;
 @synthesize requestsInProgress;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -39,10 +39,27 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)lftButtVis {
+    
+    [bi setEnabled:(aWebView.hidden == NO)];
+}
+
+- (void)bck {
+    
+    aWebView.hidden = YES;
+    tableView.hidden = NO;
+    [self lftButtVis];
+    self.navigationItem.title = ZAGR_TITLE;
+    [aWebView loadHTMLString:@"<html><head></head><body></body></html>" baseURL:nil];    
+
+}
+
 - (void)fetchURL:(NSURL *)url
 {
-    
-	[self setRequestsInProgress:[NSMutableArray array]];
+ 	
+    [aWebView loadHTMLString:@"<html><head></head><body></body></html>" baseURL:nil];    
+
+    [self setRequestsInProgress:[NSMutableArray array]];
     
 	[request setDelegate:nil];
 	[request cancel];
@@ -69,6 +86,11 @@
 	
 	[[ASIDownloadCache sharedCache] setShouldRespectCacheControlHeaders:NO];
 	[request startAsynchronous];
+    
+//    if([Common instance].bFav) {
+     
+        self.navigationItem.title = [Common instance].bTitle;
+//    }
 }
 
 - (void)webPageFetchFailed:(ASIHTTPRequest *)theRequest
@@ -93,13 +115,39 @@
 	if ([theRequest downloadDestinationPath]) {
 		NSString *response = [NSString stringWithContentsOfFile:[theRequest downloadDestinationPath] encoding:[theRequest responseEncoding] error:nil];
         //		[responseField setText:response];
-		[self.fsite loadHTMLString:response baseURL:baseURL];
+		[aWebView loadHTMLString:response baseURL:baseURL];
 	} else {
         //		[responseField setText:[theRequest responseString]];
-		[self.fsite loadHTMLString:[theRequest responseString] baseURL:baseURL];
+		[aWebView loadHTMLString:[theRequest responseString] baseURL:baseURL];
 	}
 	
-	NSLog(@"fetch: %@",[[theRequest url] absoluteString]);
+	NSLog(@"FetchSucceded: %@",[[theRequest url] absoluteString]);
+    
+    if([Common instance].bFav) {
+        
+        //        NSLog(@"Ok to Fav");
+        Item* it = [[Item alloc] init];
+        it.link = [[Common instance].bURL absoluteString];
+        it.type = TYPE_ARTICLE;
+        it.title = [Common instance].bTitle;//[aWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
+        //        it.full_text = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
+        NSLog(@"addFav: %@, %@", it.title, it.link);
+        [[Common instance]saveFav:it];
+        [it release];
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Внимание!" 
+                                                        message:@"Офф-лайн версия документа добавлена в 'Загруженные'."
+                                                       delegate:self 
+                                              cancelButtonTitle:@"ОК"
+                                              otherButtonTitles:/*@"Добавить",*/nil];
+        alert.tag = ALERT_TAG;
+        
+        [alert show];
+        [alert release];
+    }
+    [Common instance].bFav = NO;
+    [tableView reloadData];
+
 }
 
 #pragma mark - View lifecycle
@@ -115,35 +163,106 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+    
+//    [self.navigationController.view addSubview:self.fsite];
+//    [self.navigationController.view bringSubviewToFront:self.fsite];
 
+    bi = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(bck)] autorelease];
+    self.navigationItem.leftBarButtonItem = bi; 
+    
+    //	init and create the UIWebView
+    aWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 1024, 655)];
+//    aWebView.autoresizesSubviews = YES;
+//    aWebView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+//    [aWebView setDelegate:self];
+//    NSString *urlAddress = @"http://www.google.com";
+//    NSURL *url = [NSURL URLWithString:urlAddress];
+//    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+//    [aWebView loadRequest:requestObj];
+//    [self.view addSubview:aWebView];
+
+//    [self.navigationController.view addSubview:aWebView];
+//    [self.navigationController.view bringSubviewToFront:aWebView];
+//    [aWebView setBackgroundColor:[UIColor clearColor]];
+//    [aWebView setBackgroundColor:[UIColor purpleColor]];
+//    [aWebView setOpaque:NO];
+    
+    [self.view addSubview:aWebView];
+    [self.view bringSubviewToFront:aWebView];
+
+    
+    
+    tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 1024, 655) style:UITableViewStylePlain];
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    
+    [self.view addSubview:tableView];
+    
 }
+
+//- (void)webViewDidFinishLoad:(UIWebView *)webView{
+//    
+//    NSLog(@"webview finishLoad");
+//    
+//    if([Common instance].bFav) {
+//        
+//        //        NSLog(@"Ok to Fav");
+//        Item* it = [[Item alloc] init];
+//        it.link = [Common instance].surl;
+//        it.type = TYPE_ARTICLE;
+//        it.title = [aWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//        //        it.full_text = [site stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
+//        NSLog(@"addFav: %@, %@", it.title, [Common instance].surl);
+//        [[Common instance]saveFav:it];
+//        [it release];
+//        
+//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Внимание!" 
+//                                                        message:@"Офф-лайн версия документа добавлена в 'Загруженные'."
+//                                                       delegate:self 
+//                                              cancelButtonTitle:@"ОК"
+//                                              otherButtonTitles:/*@"Добавить",*/nil];
+//        alert.tag = ALERT_TAG;
+//        
+//        [alert show];
+//        [alert release];
+//    }
+//    [Common instance].bFav = NO;
+//}
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+
+    [aWebView release];
+    aWebView = nil;
+    
+    [tableView release];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    [tableView reloadData];
     
     if([Common instance].bFav) {
         
-        self.tableView.hidden = YES;
+        aWebView.hidden = NO;
+        tableView.hidden = YES;
         
         NSLog(@"toASI: %@", [Common instance].bURL);
         [self fetchURL:[Common instance].bURL];
     }
     else {
 
-        self.tableView.hidden = NO;
+        tableView.hidden = NO;
+        aWebView.hidden = YES;
 
     }
     
-    [Common instance].bFav = NO;
+//    [Common instance].bFav = NO;
+    [self lftButtVis];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -188,11 +307,11 @@
     return [[Common instance] getFavNewsCount];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView1 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView1 dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
@@ -215,12 +334,12 @@
 
 
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView1 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         [[Common instance] delFavNewsAt:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView1 deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -246,7 +365,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView1 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
     /*
@@ -257,12 +376,21 @@
      [detailViewController release];
      */
     
-    [Common instance].fromFav = YES;
+//    [Common instance].fromFav = YES;
     
     Item* item = [[Common instance] getFavNewsAt:indexPath.row];
-    [Common instance].surl = item.link;
-    [Common instance].HTMLtext = item.full_text;
-    [Common instance].tabBar.selectedIndex = 0;
+//    [Common instance].surl = item.link;
+//    [Common instance].HTMLtext = item.full_text;
+//    [Common instance].tabBar.selectedIndex = 0;
+    
+    aWebView.hidden = NO;
+    tableView.hidden = YES;
+    
+    [Common instance].bURL = [NSURL URLWithString:item.link];
+    [Common instance].bTitle = item.title;
+    NSLog(@"fromASI: %@", [Common instance].bURL);
+    [self fetchURL:[Common instance].bURL];
+    [self lftButtVis];
 }
 
 @end

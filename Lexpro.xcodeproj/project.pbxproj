@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DD1BED59148E9A8300B1375E /* FavController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1BED57148E9A8300B1375E /* FavController.m */; };
-		DD1BED5A148E9A8300B1375E /* FavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD1BED58148E9A8300B1375E /* FavController.xib */; };
 		DD1BED5E148E9D3000B1375E /* 28-star.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1BED5C148E9D3000B1375E /* 28-star.png */; };
 		DD1BED5F148E9D3000B1375E /* 28-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD1BED5D148E9D3000B1375E /* 28-star@2x.png */; };
 		DD3E17F114813AF900CC7468 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3E17F014813AF900CC7468 /* Common.m */; };
@@ -69,7 +68,6 @@
 /* Begin PBXFileReference section */
 		DD1BED56148E9A8300B1375E /* FavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavController.h; sourceTree = "<group>"; };
 		DD1BED57148E9A8300B1375E /* FavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavController.m; sourceTree = "<group>"; };
-		DD1BED58148E9A8300B1375E /* FavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavController.xib; sourceTree = "<group>"; };
 		DD1BED5C148E9D3000B1375E /* 28-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "28-star.png"; sourceTree = "<group>"; };
 		DD1BED5D148E9D3000B1375E /* 28-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "28-star@2x.png"; sourceTree = "<group>"; };
 		DD3E17EF14813AF900CC7468 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 				DD830E1F13F644C000B3389A /* iuViewController.xib */,
 				DD1BED56148E9A8300B1375E /* FavController.h */,
 				DD1BED57148E9A8300B1375E /* FavController.m */,
-				DD1BED58148E9A8300B1375E /* FavController.xib */,
 				DDCB92261494662500AB22B6 /* XMLParser.h */,
 				DDCB92271494662600AB22B6 /* XMLParser.m */,
 				DDCB92281494662600AB22B6 /* NewsController.h */,
@@ -397,7 +394,6 @@
 				DD830E1213F644BF00B3389A /* InfoPlist.strings in Resources */,
 				DD830E1B13F644C000B3389A /* MainWindow.xib in Resources */,
 				DD830E2113F644C000B3389A /* iuViewController.xib in Resources */,
-				DD1BED5A148E9A8300B1375E /* FavController.xib in Resources */,
 				DD1BED5E148E9D3000B1375E /* 28-star.png in Resources */,
 				DD1BED5F148E9D3000B1375E /* 28-star@2x.png in Resources */,
 				DDA14478148F18E60025DB1A /* favourites.plist in Resources */,

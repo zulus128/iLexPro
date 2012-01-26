@@ -30,6 +30,8 @@
 
 #define ALERT_TAG 1234
 
+#define ZAGR_TITLE @"Загруженные"
+
 enum item_types {
     
     TYPE_NEWS,
@@ -67,5 +69,6 @@ enum item_types {
 
 @property (assign, readwrite) BOOL bFav;
 @property (nonatomic, retain) NSURL* bURL;
+@property (nonatomic, retain) NSString* bTitle;
 
 @end
