@@ -276,6 +276,16 @@
             ((NewsCell*)cell).rubric.text = item.description;
             ((NewsCell*)cell).time.text = [item.date substringWithRange:NSMakeRange(17, 5)];
             
+            NSLog(@"Full String: %@!", item.date);
+//            NSString* n = [item.date substringWithRange:NSMakeRange(5, 20)];
+            NSString* n = [item.date substringWithRange:NSMakeRange(0, 25)];
+            NSLog(@"String: %@", n);
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"EEE, dd MMM yyyy hh:mm:ss"];
+            NSDate *myDate = [df dateFromString: n];
+            NSLog(@"Date: %@", [df stringFromDate:myDate]);
+//            NSLog(@"Date: %@", df);
+            
 //            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             
 //            ((NewsCell*)cell).title.numberOfLines = 3;
