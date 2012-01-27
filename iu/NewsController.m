@@ -274,23 +274,54 @@
             Item* item = [[Common instance] getNewsAt:indexPath.row];
             ((NewsCell*)cell).title.text = item.title;
             ((NewsCell*)cell).rubric.text = item.description;
-            ((NewsCell*)cell).time.text = [item.date substringWithRange:NSMakeRange(17, 5)];
+//            ((NewsCell*)cell).time.text = [item.date substringWithRange:NSMakeRange(17, 5)];
             
-            NSLog(@"Full String: %@!", item.date);
-//            NSString* n = [item.date substringWithRange:NSMakeRange(5, 20)];
-            NSString* n = [item.date substringWithRange:NSMakeRange(0, 25)];
-            NSLog(@"String: %@", n);
+            
+            // Your dates:
+            NSDate * today = [NSDate date];
+            NSDate * yesterday = [NSDate dateWithTimeIntervalSinceNow:-86400]; //86400 is the seconds in a day
+
+//            NSLog(@"Full String: %@!", item.date);
+            NSString* n = [item.date substringWithRange:NSMakeRange(5, 11)];
+//            NSLog(@"String: %@", n);
             NSDateFormatter *df = [[NSDateFormatter alloc] init];
-            [df setDateFormat:@"EEE, dd MMM yyyy hh:mm:ss"];
+//            [df setTimeZone:[NSTimeZone systemTimeZone]];
+            [df setDateFormat:@"dd MMM yyyy"];
             NSDate *myDate = [df dateFromString: n];
-            NSLog(@"Date: %@", [df stringFromDate:myDate]);
-//            NSLog(@"Date: %@", df);
+//            NSLog(@"Date: %@", [df stringFromDate:myDate]);
+//            NSLog(@"Date descr: %@", [myDate description]);
+            [df release];
+
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.dateFormat = @"dd.MM.yy";
+            //                [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
             
-//            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            // 10 first characters of description is the calendar date:
+            NSString * todayString = [dateFormatter stringFromDate:today];//[[today description] substringToIndex:10];
+            NSString * yesterdayString = [dateFormatter stringFromDate:yesterday];//[[yesterday description] substringToIndex:10];
+            NSString * refDateString = [dateFormatter stringFromDate:myDate];//[[myDate description] substringToIndex:10];
             
-//            ((NewsCell*)cell).title.numberOfLines = 3;
-//            ((NewsCell*)cell).title.frame = CGRectMake(63,0,200,800);
-//            [((NewsCell*)cell).title sizeToFit];
+//            NSLog(@"tod = %@", todayString);
+//            NSLog(@"yes = %@", yesterdayString);
+//            NSLog(@"ref = %@", refDateString);
+//            NSLog(@"des = %@", item.title);
+
+            if ([refDateString isEqualToString:todayString]) 
+            {
+                ((NewsCell*)cell).time.text =  @"Сегодня";
+                
+            } else if ([refDateString isEqualToString:yesterdayString]) 
+            {
+                ((NewsCell*)cell).time.text =  @"Вчера";
+                
+            } else 
+            {
+                ((NewsCell*)cell).time.text =  refDateString;//[dateFormatter stringFromDate:myDate];
+
+            }
+
+            [dateFormatter release];
+
         }
 
     return cell;
