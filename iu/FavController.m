@@ -272,6 +272,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [aWebView loadHTMLString:@"<html><head></head><body></body></html>" baseURL:nil];
     [super viewWillDisappear:animated];
 }
 
