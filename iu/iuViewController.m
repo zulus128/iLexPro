@@ -34,6 +34,7 @@
     if (self = [super init]) {
         
         removeable = del;
+//        [Common instance].fromCab = NO;
     }
     
 	return self;
@@ -185,6 +186,30 @@
         return NO;
     }
     
+    if([Common instance].tabBar.selectedIndex == 3) {
+    
+        NSLog(@"should: %@", [theRequest URL].absoluteString);
+        
+        NSRange textRange;
+        textRange = [[[theRequest URL].absoluteString lowercaseString] rangeOfString:[TEST_STRING3 lowercaseString]];
+        if(textRange.location != NSNotFound) {  
+        
+            [Common instance].surl = [theRequest URL].absoluteString;
+            [Common instance].fromCab = YES;
+            [Common instance].tabBar.selectedIndex = 0;
+    
+        }
+        textRange = [[[theRequest URL].absoluteString lowercaseString] rangeOfString:[TEST_STRING4 lowercaseString]];
+        NSRange textRange1 = [[[theRequest URL].absoluteString lowercaseString] rangeOfString:[TEST_STRING5 lowercaseString]];
+        if((textRange.location != NSNotFound) && (textRange1.location == NSNotFound)) {  
+            
+            [Common instance].surl = [theRequest URL].absoluteString;
+            [Common instance].fromCab = YES;
+            [Common instance].tabBar.selectedIndex = 0;
+            
+        }
+    }
+
 	return YES;
 }
 
@@ -196,9 +221,11 @@
     
 //    NSLog(@"surl = %@", [Common instance].surl);
 //    
-//            [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
-//                                                 cachePolicy: NSURLRequestReturnCacheDataElseLoad
-//                                             timeoutInterval: 10.0]];
+    if([Common instance].fromCab)
+            [self.site loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: [Common instance].surl]
+                                                 cachePolicy: NSURLRequestReturnCacheDataElseLoad
+                                             timeoutInterval: 10.0]];
+    [Common instance].fromCab = NO;
 //        }
 //    else {
 //                

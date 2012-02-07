@@ -17,6 +17,7 @@
     UIBarButtonItem* fi;
     
     BOOL toFav;
+//    BOOL fromCab;
 }
 
 - (id)initWithAddress:(NSString*)url del:(BOOL)del;

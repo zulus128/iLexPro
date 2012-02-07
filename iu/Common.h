@@ -28,7 +28,12 @@
 #define TEST_STRING1 @"lexpro.ru/document/"
 #define TEST_STRING2 @"lexpro.ru/stream/documents/print?DocID="
 
+#define TEST_STRING3 @"http://open.lexpro.ru"
+#define TEST_STRING4 @"http://online.lexpro.ru"
+#define TEST_STRING5 @"login.php"
+
 #define ALERT_TAG 1234
+#define ABOUT_TAG 1235
 
 #define ZAGR_TITLE @"Загруженные"
 
@@ -64,8 +69,10 @@ enum item_types {
 @property (nonatomic, retain) UITabBarController* tabBar;
 @property (nonatomic, retain) NSString* filePath;
 @property (nonatomic, retain) NSString* surl;
+//@property (nonatomic, retain) NSString* surl1;
 @property (nonatomic, retain) NSString* HTMLtext;
 @property (assign, readwrite) BOOL fromFav;
+@property (assign, readwrite) BOOL fromCab;
 
 @property (assign, readwrite) BOOL bFav;
 @property (nonatomic, retain) NSURL* bURL;

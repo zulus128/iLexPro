@@ -32,7 +32,7 @@
 
 - (IBAction)online: (id)sender {
     
-    [Common instance].surl = @"http://online.lexpro.ru";
+    [Common instance].surl = @"http://online.lexpro.ru/login.php";
     [self.navigationController pushViewController:vc1 animated:YES];
     
 }
@@ -57,6 +57,24 @@
     // Return YES for supported orientations
 	return YES;
 }
+
+//- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)theRequest 
+// navigationType:(UIWebViewNavigationType)navigationType
+//{
+//	
+//    NSLog(@"AbshouldStartLoadWithRequest: %@", [theRequest URL]);
+//    
+//    NSRange textRange =[[[theRequest URL].absoluteString lowercaseString] rangeOfString:[TEST_STRING3 lowercaseString]];
+//    
+//    if(textRange.location != NSNotFound) {  
+//    
+//        [Common instance].surl = [theRequest URL].absoluteString;
+//        [Common instance].tabBar.selectedIndex = 0;
+//
+//    }
+//    
+//	return YES;
+//}
 
 - (void)dealloc {
     

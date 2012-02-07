@@ -18,10 +18,10 @@
 
 @synthesize tabBar;
 @synthesize filePath = _filePath;
-@synthesize surl;
+@synthesize surl/*, surl1*/;
 @synthesize HTMLtext;
 @synthesize fromFav;
-
+@synthesize fromCab;
 @synthesize bFav;
 @synthesize bURL;
 @synthesize bTitle;
@@ -40,18 +40,16 @@
 	return instance;
 }
 
-- (void) tabBarController: (UITabBarController *) tabBarController didSelectViewController: (UIViewController *) viewController {
+- (BOOL) tabBarController: (UITabBarController *) tabBarController shouldSelectViewController: (UIViewController *) viewController {
 
-//    NSLog(@"fff %d", tabBarController.selectedIndex);
+    if (viewController.title == @"Кабинет") {
     
-    switch(tabBarController.selectedIndex){
-        case 0:
-//            [nav1 popViewControllerAnimated:NO];
-            break;
-        case 3:
-//            self.surl = @"http://online.lexpro.ru";
-            break;
-    }
+//        self.surl1 = self.surl;
+        self.surl = @"http://online.lexpro.ru/login.php";
+        [Common instance].fromCab = YES;
+    }    
+
+    return YES;
 }
     
 - (id) init{	
