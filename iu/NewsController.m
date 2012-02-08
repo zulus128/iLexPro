@@ -285,7 +285,10 @@
             NSString* n = [item.date substringWithRange:NSMakeRange(5, 11)];
 //            NSLog(@"String: %@", n);
             NSDateFormatter *df = [[NSDateFormatter alloc] init];
-            [df setTimeZone:[NSTimeZone systemTimeZone]];
+//            [df setTimeZone:[NSTimeZone systemTimeZone]];
+            NSLocale *locale = [[[NSLocale alloc] 
+                                 initWithLocaleIdentifier:@"en_US_POSIX"] autorelease];
+            [df setLocale:locale];
             [df setDateFormat:@"dd MMM yyyy"];
             NSDate *myDate = [df dateFromString: n];
 //            NSLog(@"Date: %@", [df stringFromDate:myDate]);
@@ -294,7 +297,8 @@
 
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             dateFormatter.dateFormat = @"dd.MM.yy";
-            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+//            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+            [dateFormatter setLocale:locale];
             
             // 10 first characters of description is the calendar date:
             NSString * todayString = [dateFormatter stringFromDate:today];//[[today description] substringToIndex:10];
