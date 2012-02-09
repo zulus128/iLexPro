@@ -125,7 +125,7 @@
 					<object class="IBUITextView" id="1019414978">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{321, 404}, {382, 119}}</string>
+						<string key="NSFrame">{{321, 423}, {382, 49}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -139,7 +139,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<bool key="IBUIEditable">NO</bool>
-						<string key="IBUIText">Номер версии: 1.0.2. Разработчик: Moslight LLC, http://www.moslight.com</string>
+						<string key="IBUIText">Номер версии: 1.0.2.</string>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
